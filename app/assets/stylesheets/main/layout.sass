@@ -28,14 +28,11 @@ body
 		color: $green
 		&:hover
 			color: $hover-green
+			border-color: $hover-green
 	.content,textarea,input[type='text'],.lyrics,.tip
 		color: $green
 	#{$all-text-inputs-focus},textarea:focus
 		border-color: $green
-	.btn.pink
-		color: $pink
-		&:hover
-			color: $hover-pink
 	span.invite
 		color: $green
 		border: 2px dotted $green
@@ -53,17 +50,20 @@ body.wis
 		color: $wisteria
 		&:hover
 			color: $hover-wisteria
+			border-color: $hover-wisteria
 	.content,textarea,input[type='text'],.lyrics,.tip
 		color: $wisteria
 	#{$all-text-inputs-focus},textarea:focus
 		border-color: $wisteria
+	span.invite
+		color: $wisteria
+		border: 2px dotted $wisteria
+body,body.wis 
 	.btn.pink
 		color: $pink
 		&:hover
 			color: $hover-pink
-	span.invite
-		color: $wisteria
-		border: 2px dotted $wisteria
+			border-color: $hover-pink
 body.veggie
 	overflow: auto	
 	nav

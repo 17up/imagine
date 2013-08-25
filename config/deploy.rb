@@ -78,5 +78,5 @@ end
 task :mongoid_migrate_database, :roles => :web do
   run "cd #{deploy_to}current/; RAILS_ENV=production bundle exec rake db:migrate"
 end
-after "deploy:update_code", :link_shared_files #, :sync_assets_to_cdn, :mongoid_migrate_database
+before "deploy:assets:precompile", :link_shared_files #, :sync_assets_to_cdn, :mongoid_migrate_database
 after "deploy:restart", "deploy:cleanup"
