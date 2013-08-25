@@ -1,0 +1,81 @@
+@import "utils"
+$yellow: #e67e22
+$blue: #3498db
+
+#account
+	.step
+		position: relative
+		width: 700px
+		@include box-sizing(border-box)
+		font-size: 22px
+		line-height: 1.2
+		@include text-shadow-inverse
+	#ahome
+		.profile
+			margin: 10px 0
+			a
+				color: white
+				border: 2px dotted
+		.providers
+			padding: 10px 0
+			.item
+				padding: 5px
+				margin: 0 10px
+				font-size: 60px
+				a
+					color: $yellow
+					display: inline-block
+					border-radius: 50%
+					width: 80px
+					height: 80px
+					line-height: 80px
+					text-align: center
+					@include shadow(0,0,0,4px,$yellow)
+					&:hover
+						color: white
+						background: $yellow
+			.binded
+				a 
+					color: $blue
+					@include shadow(0,0,0,4px,$blue)
+					&:hover
+						background: $blue
+	.provider.active
+		opacity: 1
+	.provider
+		position: relative
+		opacity: 0
+		@include transition(all,0.8s)
+		.bg_icon
+			position: absolute
+			left: 50%
+			top: -100px
+			margin-left: -80px
+			opacity: 0.3
+			color: $blue
+			font-size: 60px
+			border-radius: 50%
+			width: 80px
+			height: 80px
+			line-height: 80px
+			text-align: center
+			@include shadow(0,0,0,4px,$blue)
+			@include transform(scale(2))
+		.headline
+			position: relative
+			height: 64px
+			img 
+				position: absolute
+				left: 5px
+				top: 5px
+				width: 50px
+				height: 50px
+		.expire
+			font-size: 14px
+			margin: 10px 0
+		.friends
+			position: relative
+			border: 2px dashed green
+			.f_card
+				float: left
+				margin: 5px

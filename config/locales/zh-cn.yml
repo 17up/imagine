@@ -1,0 +1,36 @@
+zh-cn:
+  errors:
+    not_found: 页面不存在
+    crash: 囧啊，宕机了
+    browser: 对不起，你的浏览器太落后啦，建议你下载
+  mobile:
+    title: Smart
+  title: Imagine
+  keywords: "在线教育,语言教育,智能学习,17up,language,education,imagine,academy,knowledge,peace,future"
+  describe: "这里是 17up 学会,爱知识,爱生活,爱同伴,认识自我,迎接内心的变革,开拓未来,见证奇迹,希望从这里开始。第一章：imagine english,以修心的方式学英语"
+  flash:
+    success:
+      upload:
+        uword: "您的单词卡片制作成功啦！"
+    notice:
+      welcome: "欢迎 %{name} 来到 17up 学会~~"
+      avatar: "您的新头像好帅！"
+      bind: "绑定成功啦!"
+    error:
+      bind: "坏消息，您要绑定的帐号已被使用，如需帮助，请联系 %{email}"
+      blank: "不能为空，请认真填写！"
+      uid: "遗憾呐，您想要的 ID 已经被抢占了，换一个试试吧"
+      uid_format: "您的 ID 包含非法字符，是不允许的，请修改"
+      avatar: "图片格式仅支持 png、jpg、gif，图片大小限制 3M"
+      image: "图片最大 2M 限制"
+  greet:
+    new_user:
+      morn: "@%{name} 歡迎來到 17up 學會，伴著清晨的陽光，一起大聲來說英語吧。"
+      am: "@%{name} 歡迎來到 17up 學會，現在的你是不是精神正佳呢？來一起記單詞吧！"
+      pm: "@%{name} 歡迎來到 17up 學會，下午適合閱讀輕鬆的短文，來看看小柒為你準備了一些什麼好東西吧"
+      night: "@%{name} 歡迎來到 17up 學會，每天晚上都有歡樂的課程等著你哦，和親密的好友一起來一課吧！"
+      midn: "@%{name} 歡迎來到 17up 學會，夜深了，你還沒有睡嗎？讓小柒幫你改善作息計劃吧"
+
+  invite: 
+    common: "@%{uname} 我觉得你可能会对 %{cname} 这堂课感兴趣哦，快来跟我一起上课吧！"
+    teach: "@%{uname} 我觉得你当 %{cname} 这堂课的老师一定很赞耶！快来教教我吧！"

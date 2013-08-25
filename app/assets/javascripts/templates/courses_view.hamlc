@@ -1,0 +1,9 @@
+.alert.alert-info
+	%select#c_filter
+		%option(value="open")
+			已发布
+		%option(value="ready" selected)
+			待审合
+		%option(value="draft")
+			草稿
+	课程

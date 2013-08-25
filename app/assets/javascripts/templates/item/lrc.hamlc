@@ -1,0 +1,3 @@
+.lyrics.text_center
+	%strong
+		= @text

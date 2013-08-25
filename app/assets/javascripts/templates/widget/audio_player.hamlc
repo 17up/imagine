@@ -1,0 +1,7 @@
+.ms.media.alert-info.flat
+	.ms-avatar
+		%img{:src => @avatar}
+	%li
+		%a.sm2_link{:href => @url}
+			语音消息
+	%span.close.icon-remove

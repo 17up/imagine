@@ -1,0 +1,38 @@
+.headline.form.alert-success
+	.title
+		= @title
+	.info
+		%span.icon-leaf
+		= @wl
+		
+		%a{:href => @author.url}(target = "blank")
+			%span.icon-user
+			= @author.name
+		- if @tags
+			%i.icon-tags
+			= @tags
+	.action
+		- if @open
+			- if @imagine
+				%span.btn.back-to-content
+					%i.icon-reply
+					返回
+			- else
+				- if @has_checkin
+					%span.btn.imagine_words
+						%i.icon-bolt
+						学单词
+				- else
+					%span.btn.orange.checkin
+						%i.icon-bell-alt
+						登记
+				%span.btn.back-to-list
+					%i.icon-reply
+					返回
+		- else
+			%span.btn.study(title = "进入课程")
+				%i.icon-chevron-right
+- if @open
+	- unless @imagine
+		.content.form
+			!= @raw_content

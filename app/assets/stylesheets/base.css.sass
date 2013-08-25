@@ -1,0 +1,229 @@
+@import "utils"
+
+$pink: #b94a48
+$hover-pink: #c497a0
+
+@include font-face("Tallys","/font/Tallys/Tallys")
+@include font-face("Lobster","/font/Lobster/Lobster",400)
+@include font-face("Droid Sans","/font/Droid Sans/Droid Sans",700)
+@include font-face("Amienne","/font/Amienne/Amienne")
+@include font-face("Dancing Script","/font/Dancing Script/Dancing Script",700)
+//http://fonts.googleapis.com/css?family=Droid+Sans+Mono
+@include font-face("Droid Sans Mono","/font/Mono/Mono",400)
+
+body
+	font-family: "微软雅黑", monospace, "Droid Sans Mono", Arial,Helvetica,sans-serif
+	margin: 0
+	height: 100%
+	width: 100%
+html,section
+	height: 100%
+
+.serif
+	font-family: 'Lobster', serif
+	font-weight: normal
+
+.tallys
+	font-family: "Tallys", sans-serif
+	
+.amienne
+	font-family: "Amienne", sans-serif
+
+.dancer
+	font-family: "Dancing Script", cursive
+
+a img, img
+	border: none
+	vertical-align: middle
+
+a,a:hover
+	text-decoration: none
+.ellipsis
+	text-overflow: ellipsis
+	white-space: nowrap
+	overflow: hidden
+					
+#{$all-text-inputs}
+	background-color: #ffffff
+	border: 2px solid #ccc
+	height: 20px 
+	padding: 4px 6px
+	line-height: 20px 
+	font-size: 14px
+	color: #555
+
+#{$all-text-inputs-focus},textarea:focus
+	outline: none
+input.center_input
+	width: 100%
+	text-align: center
+	border: none
+	background: rgba(255,255,255,0.5)
+	padding: 10px 0
+	margin: 10px 0
+
+textarea
+	min-width: 500px
+	min-height: 100px
+	line-height: 1.5
+	border: 2px solid #cccccc
+	padding: 5px
+	resize: none
+	font-size: 14px
+	@include box-sizing(border-box)
+	width: 100%
+	background-color: rgba(255,255,255,0.5)
+	font-family: monospace, "Droid Sans Mono", sans-serif
+	font-size: 16px
+.text_center
+	text-align: center
+
+.text_right
+	text-align: right
+.hide 
+	display: none
+.left
+	float: left
+
+.right
+	float: right
+
+.as_link
+	cursor: pointer
+
+.clearfix
+	@include clearfix
+.disable_event
+	pointer-events: none
+
+.btn
+	border: 3px solid
+	padding: 8px
+	display: inline-block
+	cursor: pointer
+	@include round(8px) 
+
+.btn.form_btn
+	padding: 4px 8px
+input.btn
+	padding: 4px 8px
+	background-color: transparent
+	font-size: 14px
+.btn.disabled
+	pointer-events: none
+
+.mask
+	pointer-events: none
+	opacity: 0.3
+	//overflow: hidden
+	
+.hiddenfile
+	width: 0px
+	height: 0px
+	overflow: hidden
+	position: absolute
+	bottom: 0
+	left: 0
+
+#flash_message
+	width: 100%
+	z-index: 999
+	top: 0
+	position: fixed
+#confirm_dialog
+	width: 100%
+	z-index: 999
+	position: fixed
+	top: 0
+	.confirm
+		margin: 10px 0
+		.form_btn
+			width: 16px
+		
+.alert
+	padding: 8px 45px 8px 14px	
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
+	background-color: #fcf8e3
+	border: 1px solid #fbeed5
+	color: #c09853
+	position: relative
+	z-index: 99
+	.close
+		position: absolute
+		top: 7px
+		right: 10px
+		line-height: 20px
+		font-size: 25px
+		cursor: pointer
+		&:hover
+			color: #ef7a7f
+	.next
+		position: absolute
+		top: 50%
+		font-size: 40px
+		right: 10px
+		margin-top: -20px
+		cursor: pointer
+		&:hover
+			color: #ef7a7f
+.asset
+	padding: 8px 35px 8px 60px	
+	line-height: 2
+	margin: 10px
+	.emotion	
+		position: absolute
+		left: 5px
+		top: 0px
+		img
+			width: 40px
+		
+.form,.quote
+	padding: 8px 14px
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
+.quote
+	margin-bottom: 10px
+	line-height: 1.5
+	.author
+		display: block
+		text-align: right
+	a:hover
+		color: #ffccb1			
+	
+.alert-error
+	background-color: #f2dede
+	border: 1px solid #eed3d7
+	color: $pink
+.alert-info
+	background-color: #d9edf7
+	border: 1px solid #bce8f1
+	color: #3a87ad
+
+.label
+	display: inline-block
+	padding: 2px 4px
+	font-size: 20px
+	line-height: 1.2
+	white-space: nowrap
+	margin: 5px 0
+	@include text-shadow-white(#2980b9)
+	i 
+		border-right: 2px solid #ccc
+		padding-right: 4px
+		display: inline-block
+.label.round
+	@include round(5px)
+.label-red
+	background-color: $pink
+.label-orange
+	background-color: #e6982d
+
+#footer
+	text-align: center
+	color: white
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25)
+	font-size: 20px
+	a 
+		color: #ecf0f1
+	.tool
+		display: none
+		padding: 20px

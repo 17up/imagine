@@ -1,0 +1,15 @@
+.avatar(title="点我更换头像" data-uploader="avatar")		
+	%img{:src => @avatar}
+	%i.icon-upload-alt
+.info
+	.name
+		= @name
+	.gem.label
+		= @gems
+.brand.dancer
+	17up
+.corn
+	%span.style{:class => ('hide' if @layout)}(rel="day")
+		%i.icon-sun
+	%span.style{:class => ('hide' unless @layout)}(rel="night")
+		%i.icon-moon

@@ -1,0 +1,14 @@
+.quote.alert-success
+	%span.icon-quote-left
+	!= @q.content
+	%span.icon-quote-right
+	%span.author
+		%a{:href => @q.author.link}(target = "blank")
+			= @q.author.name
+	- if @q.tags
+		.tags
+			%a.label{:href => "/admin/quote/#{@q._id}"}
+				%span.icon-link
+			- for tag in @q.tags
+				%i.label
+					= tag

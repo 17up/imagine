@@ -1,0 +1,37 @@
+- if @check
+	.edit-action
+		- if @status is 2
+			%span.btn.make_open
+				%i.icon-ok
+				通过并发布
+		%span.btn.back
+			%i.icon-reply
+			返回列表
+	.headline.alert-success.form
+		.title
+			= @title
+		.info
+			- if @tags
+				%i.icon-tags
+				= @tags
+			%i.icon-star
+			= @wl
+			个单词
+	.content.form
+		!= @raw_content
+		
+- else
+	.headline.alert-success.form{:class => @stat}
+		.title
+			= @title
+		.u_at
+			%span.icon-time
+			= (new Date(@u_at)).format("yyyy-MM-dd hh:mm:ss")
+			saved
+			%span.icon-user
+			%a{:href => @author.url}(target = "blank")
+				= @author.name
+		.action
+			%span.btn.check(title="详情")
+				%i.icon-eye-open
+	

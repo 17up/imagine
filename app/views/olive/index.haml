@@ -1,0 +1,28 @@
+#container
+	%aside
+		%a.brand.dancer(href="/")
+			17up
+		%ul#side_nav
+			%li(rel = 'courses')
+				%span.icon-book
+				%div
+					Course
+				%i
+			%li(rel = 'quotes')
+				%span.icon-quote-left
+				%div
+					Quote
+				%i
+			%li(rel = 'songs')
+				%span.icon-headphones
+				%div
+					Song
+				%i
+	%article	
+		= render "shared/flash_message"
+
+- content_for :footer do
+	#init.hide(data-js="Olive")
+	#uploader
+		.song
+			= render 'shared/uploader',:wid => 0,:url => "/songs/upload",:type => "audio"

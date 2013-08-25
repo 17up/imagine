@@ -1,0 +1,33 @@
+- if @title
+	.title
+		= @title
+	.content
+		- if @content isnt ''
+			= @content
+		- else
+			.load.text_center
+				%span.icon-refresh
+				小柒正在努力帮你加载注释...
+	- if @content isnt ''
+		%form.word_form(action="/words/add_imagine" data-remote="true" method="post")	
+			%input{:value => @_id}(type="hidden" name="_id")	
+			.synset
+				%p
+					%i.icon-chevron-down
+					相关词汇
+				%input.tags{:value => @synset.join(",")}(name="synset" data-tip="添加相关词汇")
+			.sentence
+				%p
+					%i.icon-chevron-down
+					例句
+				%input.tags{:value => @sentence.join("~")}(name="sentence" data-tip="添加例句" data-delimiter="~") 
+
+- if @tip
+	.tip
+		= @tip
+- if @sum
+	.info
+		您有
+		%span.num
+			= @sum
+		个单词需要编辑

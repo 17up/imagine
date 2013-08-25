@@ -1,0 +1,9 @@
+#confirm_dialog
+	.form.alert-error.text_center.hide
+		%strong
+			= @msg
+		.confirm
+			%span.btn.form_btn.pink.yes(data-confirm = "true")
+				%i.icon-ok
+			%span.btn.form_btn.pink.no(dat-confirm = "false")
+				%i.icon-remove

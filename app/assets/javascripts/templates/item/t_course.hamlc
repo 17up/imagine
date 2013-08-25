@@ -1,0 +1,68 @@
+- if @editable
+	.edit-action
+		- if @next
+			- if @fetch_word
+				%span.btn.publish
+					%i.icon-ok
+					提交审核
+				%span.btn.select_words
+					%i.icon-chevron-up
+					标注词汇
+			- else			
+				%span.btn.fetch_words
+					%i.icon-chevron-down
+					编辑词汇
+					%span.num
+		- else
+			%span.btn.save
+				%i.icon-ok
+				保存修改
+		%span.btn.back
+			%i.icon-reply
+			返回列表
+		- if @status is 3
+			%span.btn.delete.pink
+				%i.icon-remove
+				删除
+	- if @next
+		.headline.alert-success.form
+			.title
+				= @title
+			.info
+				- if @tags
+					%i.icon-tags
+					= @tags
+				%i.icon-star
+				已保存
+				= @wl
+				个单词
+		- unless @fetch_word
+			.content.form
+				!= @raw_content		
+	- else
+		.editor
+			!= JST['form/course_form'](course: @)
+	
+- else
+	.headline.alert-success.form.no_border{:class => @stat}
+		.title
+			- if @title
+				= @title
+			- else
+				This Is A New Course			
+		.u_at
+			%span
+				= @stat
+			%span.icon-time
+			- if @u_at
+				= (new Date(@u_at)).format("yyyy-MM-dd hh:mm:ss")
+				saved
+			- else
+				No Sync Record
+		- if @status isnt 1
+			.action			
+				- if @status isnt 0
+					%span.btn.select_words_view(title="标注词汇")
+						%i.icon-check
+				%span.btn.edit(title="编辑课程")
+					%i.icon-edit

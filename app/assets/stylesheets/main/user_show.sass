@@ -1,0 +1,47 @@
+@import "utils"
+
+#user_info
+	height: 105px
+	width: 100%
+	overflow: hidden
+	@include text-shadow-white(#1abc9c)
+	z-index: 999
+	position: relative
+	border-bottom: 5px solid #16a085
+	.info 
+		padding-left: 150px
+		.name
+			line-height: 2
+			font-size: 24px
+			color: #fff
+			font-family: "Lobster"
+		.providers
+			font-size: 40px
+			a 
+				color: white
+	.avatar
+		margin-left: 30px
+		position: absolute
+		margin-top: -47px
+		top: 50%
+		img
+			width: 87px
+			height: 87px
+			@include round(7px)
+			padding: 3px
+			background: #f5f5f5
+#user_show
+	margin: 0 auto 10px
+	margin-top: 20px
+	.word_item
+		opacity: 0
+		img
+			width: 188px
+		.pic
+			margin: 5px
+			padding: 5px
+			background: #f5f5f5
+			@include text-shadow-inverse(#333)
+			@include shadow(0px,1px,3px,rgba(0,0,0,.3))
+			img
+				@include round(10px)

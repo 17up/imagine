@@ -1,0 +1,22 @@
+#invite
+	#inav
+		您的好友
+		= link_to @member.name,"/" + @member.member_path
+		觉得这堂
+		%span.brand.dancer
+			17up
+		的课程超赞的哟，一起学吧！
+		#join
+			= link_to member_omniauth_authorize_path(:weibo) do
+				%span.icon-weibo
+			= link_to member_omniauth_authorize_path(:twitter) do
+				%span.icon-twitter
+	.banner.form.alert-success
+		.title
+			= @course.title
+		.info
+			- if @course.tags
+				%i.icon-tags
+				= @course.tags.join(",")
+	.content.form
+		!= @course.raw_content

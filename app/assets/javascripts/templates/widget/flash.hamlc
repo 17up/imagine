@@ -1,0 +1,3 @@
+.alert.text_center.hide
+	%strong
+		= @msg

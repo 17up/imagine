@@ -1,0 +1,115 @@
+@import "utils"
+
+#chatroom
+	display: none
+	position: fixed
+	bottom: 0
+	width: 100%
+	height: auto
+	left: 0
+	z-index: 100
+	.ms_audio_box
+		width: 200px
+		position: absolute
+		right: 5px
+		bottom: 45px
+		.media
+			position: relative		
+			padding: 10px 10px 10px 60px
+			margin-bottom: 5px
+			.close 
+				position: absolute
+				right: 10px 
+				top: 13px
+				cursor: pointer
+	.ms_text_box
+		width: 50%
+		left: 5px 
+		bottom: 45px
+		position: absolute	
+		.text 
+			position: relative
+			margin-bottom: 5px			
+			&:hover
+				opacity: 0.3
+			.ms-content
+				padding: 10px 10px 10px 60px
+	.ms		
+		z-index: 99
+		font-size: 20px
+		overflow: hidden
+		.ms-avatar
+			position: absolute
+			left: 10px
+			top: 50%
+			margin-top: -16px
+			img 
+				width: 32px
+				height: 32px
+				@include round(4px)
+		
+	.container
+		@include glass
+		position: relative
+		z-index: 100
+	#invite
+		position: relative
+		.close
+			position: absolute
+			right: 10px
+			top: 10px
+			font-size: 30px
+		.message
+			position: relative
+			border: 2px dashed #fcf8e3
+			.share
+				position: absolute
+				right: 6px
+				bottom: 0px
+				font-size: 26px
+				color: #468847
+				cursor: pointer
+				&:hover
+					color: #ef7a7f
+		.title
+			padding: 5px
+	.inner_wrap
+		width: 640px
+		margin: 0 auto
+		position: relative
+		padding: 5px 0
+		#oline_users
+			width: 210px
+			overflow: hidden
+			position: absolute
+			left: 0
+			bottom: 0
+			height: 100%
+			.member
+				display: inline-block
+				padding: 5px
+				vertical-align: middle
+				span.invite
+					width: 28px
+					height: 28px
+					text-align: center
+					line-height: 32px
+					display: inline-block
+					@include round(5px)
+					cursor: pointer
+				img 
+					width: 32px
+					height: 32px
+					@include round(5px)
+		#chat_content
+			margin-left: 215px
+			width: 400px
+			background: #f5f5f5
+			font-weight: bold
+		span.speech
+			font-size: 20px
+			position: absolute
+			right: -20px
+			top: 50%
+			cursor: pointer
+			margin-top: -12px

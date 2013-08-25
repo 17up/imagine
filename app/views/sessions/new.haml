@@ -1,0 +1,13 @@
+= cache("sign_in/admin") do
+	#login_form
+		.title.dancer
+			17up
+		= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+			%p
+				= f.label :email,"帐号"
+				= f.email_field :email,:placeholder => "Email",:required => "required"
+			%p
+				= f.label :password,"密码"
+				= f.password_field :password,:placeholder => "Password",:required => "required"
+			.text_center
+				= f.submit "登录",:class => "btn"

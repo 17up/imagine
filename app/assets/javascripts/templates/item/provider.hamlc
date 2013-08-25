@@ -1,0 +1,13 @@
+.bg_icon
+	%span{:class => "icon-#{@provider}",:title => @provider}
+.container.hide
+	.headline
+		%a{:href => @link}(target = 'blank')
+			%img{:src => @avatar,:title => @name}
+	- if @expired_at
+		.alert.alert-info.expire
+			%span.icon-time
+			过期时间：
+			= (new Date(@expired_at)).format("yyyy-MM-dd hh:mm:ss")
+
+

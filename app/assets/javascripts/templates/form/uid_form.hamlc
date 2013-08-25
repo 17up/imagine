@@ -1,0 +1,6 @@
+#set_uid.form.text_center
+	.tip
+		ID 只能由 字母、数字、_构成
+	%form#set_uid_form(action="/members/update" method="post" data-remote="true")
+		%input(type="text" name="uid" placeholder="eg: i_love_u_17" autocomplete = "off" required="required" autofocus="autofocus")
+		%input.btn(type="submit" value="登记")

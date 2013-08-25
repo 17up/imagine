@@ -1,0 +1,41 @@
+@import "utils"
+@import "course"
+
+.editor
+	textarea
+		margin-top: 15px
+		margin-bottom: 5px
+#teach
+	.form
+		margin-top: 10px
+	#t_courses
+		margin: 10px
+		@include course-li
+#t_words
+	margin: 10px
+	.t_word
+		text-align: center
+		width: 700px
+		z-index: 1
+		position: relative
+		opacity: 0
+		@include transition(all,0.8s)
+		font-size： 22px
+	.t_word.active
+		opacity: 1
+	.tip
+		line-height: 2
+		font-size: 40px
+	.word_form 
+		text-align: left
+		.reload
+			color: #3498db
+			cursor: pointer
+	.title
+		font-size: 24px
+	.content
+		line-height: 1.5
+		padding: 10px
+		margin: 10px 0
+		border: 1px dashed
+		background: rgba(255,255,255,0.3)

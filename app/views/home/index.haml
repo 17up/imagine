@@ -1,0 +1,57 @@
+.logo_text.dancer
+	17up
+= render 'sorry'
+#welcome_wrap
+	#impress
+		#topic.step.tallys(data-x="0" data-y="1800" data-z="3000" data-scale="1")
+			#logo.title.amienne
+				imagine english
+			.desc
+				知行合一
+				%br
+				以联想的方式学英语
+		#belief.amienne.step(data-x="0" data-y="600" data-z="1500" data-scale="1")
+			#love-map
+				%span.dancer
+					love
+				%span.moon
+					✈
+			.title.amienne
+				Love can change anything
+			
+		#login.step(data-x="0" data-y="-600" data-z="0" data-scale="1")
+			.desc
+				还差
+				%span.num
+					= @num
+				名志愿者
+				%br
+				你可以选择以下任意方式加入
+			.providers
+				- Authorization::PROVIDERS.each do |x|
+					= link_to member_omniauth_authorize_path(x.to_sym) do
+						%span{:class => "icon-#{x}",:title => x}
+
+		
+		#app.step.text_center(data-x="0" data-y="-1800" data-z="1500"  data-scale="1")
+			.desc
+				移动应用正在开发中，敬请期待！			
+				%span.icon-fire
+			%p
+				= render 'shared/copyright'	
+	%nav
+		%ul.tab
+			%li
+				%a(href = "#topic")
+					主题
+			%li
+				%a(href = "#belief")
+					信念
+			%li
+				%a(href = "#login")
+					加入
+			%li
+				%a(href = "#app")
+					应用
+- content_for :footer do	
+	#init.hide(data-js="Welcome")

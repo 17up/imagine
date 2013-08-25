@@ -1,0 +1,24 @@
+@import "utils"
+
+.icontrol
+	opacity: 0
+	.progress
+		position: absolute
+		top: 0
+		height: 4px
+		background: transparent
+		width: 100%
+		.current_bar
+			@include transition(width,0.8s)
+			height: 100%
+			width: 0
+.icontrol.active
+	opacity: 1
+.imagine
+	display: none
+	.step
+		position: relative
+		width: 700px
+		@include box-sizing(border-box)
+		font-size: 22px
+		line-height: 1.2

@@ -1,0 +1,35 @@
+= render "shared/flash_message"
+%nav
+#container
+	%aside
+		%ul#side_nav
+			%li(rel = 'dashboard')			
+				%span.icon-leaf
+				%div
+					學院
+				%i	
+			%li(rel = 'account')
+				%span.icon-user
+				%div
+					帳戶
+				%i
+			%li(rel = "teach")
+				%span.icon-magic
+				%div
+					教案
+				%i	
+			/ %li(rel = "friend")
+			/ 	%span.icon-globe
+			/ 	%div
+			/ 		好友
+			/ 	%i
+	%article					
+- content_for :footer do
+	#init.hide(data-js="Veggie")
+	#uploader
+		.audio
+			= render 'shared/uploader',:wid => 0,:url => "#",:type => "audio"
+		.avatar
+			= render 'shared/uploader',:url => "/members/upload_avatar",:type => "image"
+		.uword
+			= render 'shared/uploader',:url => "/words/upload_img_u",:type => "image",:wid => ''

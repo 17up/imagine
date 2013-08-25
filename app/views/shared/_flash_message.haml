@@ -1,0 +1,6 @@
+#flash_message
+	- if !flash.keys.blank?	
+		- flash.keys.each do |key|
+			.alert{:class => "alert-#{key}"}
+				%span.icon-remove-circle.close
+				%strong= flash[key]

@@ -1,0 +1,60 @@
+#account_wrap
+	#ahome.step(data-x="0" data-y="0" data-z="0" data-scale="1")
+		.profile
+			.uid		
+				%a.label.label-orange.active(href = "/members/sign_out" data-method="delete" rel="nofollow")
+					%span.icon-off
+					退出帐户
+				%a.label{:href => @member_path}
+					= @uid		
+			.c_at
+				%span.label
+					%span.icon-time
+					入会日期
+				%span.label.label-success.round
+					= (new Date(@c_at)).format("yyyy-MM-dd hh:mm:ss")
+			.role
+				%span.label
+					%span.icon-trophy
+					学员状态
+				%span.label.label-success.round
+					普通学员
+				- if @role is 'a'
+					%span.label.label-red.round
+						管理员
+				- else if @role is 't'
+					%span.label.label-red.round
+						教师
+			.grades
+				%span.label
+					%span.icon-book
+					已修课程
+				%span.label.label-success.round
+					= @grades
+			.uwords
+				%span.label
+					%span.icon-star
+					已知词汇
+				%span.label.label-success.round
+					= @words
+			.friends
+				%span.label
+					%span.icon-group
+					好友数量
+				%span.label.label-success.round
+					= @friends
+
+		%span.label
+			%span.icon-link
+			其他社交帐号
+		.providers.clearfix
+			- for p in @providers	
+				- if p.has_bind
+					.item.pull-left.binded
+						%a{:href => "#/" + p.provider}
+							%span{:class => "icon-#{p.provider}",:title => p.provider}
+				- else
+					.item.pull-left
+						%a{:href => p.omniauth_url}
+							%span{:class => "icon-#{p.provider}",:title => p.provider}
+	

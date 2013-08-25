@@ -1,0 +1,12 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+    errors:
+        not_found: Page Not Found
+        crash: ooh! something wrong
+        browser: 'Sorry,your browser is unsupported'
+    title: 17up
+    subtitle: Imagine English
+    keywords: "language education,17up,online education,imagine,academy,knowledge,peace,future"
+    describe: "This is 17up academy,hope from here.Chapter 1: imagine english"

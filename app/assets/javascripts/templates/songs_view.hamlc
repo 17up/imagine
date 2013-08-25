@@ -1,0 +1,12 @@
+#upload_songs
+	.alert.alert-info
+		%span.icon-upload
+		上传制作
+	#lyrics.form.alert-success
+		!= JST['form/song']()
+		.hide.uploader(data-uploader="song")
+			%span.icon-upload
+#recent_songs
+	.form.alert-info
+		%span.icon-time
+		近期歌曲

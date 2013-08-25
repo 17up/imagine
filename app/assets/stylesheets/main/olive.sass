@@ -1,0 +1,92 @@
+@import "utils"
+@import "course"
+
+body.olive
+	background: asset-url('img/bg/bg_home.png') #DBEED5
+	#container
+		position: relative
+		height: 100%
+		min-height: 400px
+		aside
+			position: fixed
+			top: 0
+			left: 0
+			width: 86px
+			height: 100%
+			color: #DDD
+			z-index: 99
+			@include text-shadow-white(#27ae60,asset-url('img/noise.png'))
+			a.brand
+				display: block
+				font-size: 26px
+				text-align: center
+				line-height: 56px
+				color: #fff
+			ul#side_nav
+				margin: 0
+				padding: 0				
+				li 
+					list-style-type: none
+					margin: 0
+					padding: 24px 5px
+					text-align: center
+					position: relative
+					cursor: pointer
+					i
+						position: absolute
+						top: 50%
+						margin-top: -10px
+						right: 0
+						opacity: 0
+					&:hover
+						color: #fff
+				li.active
+					color: #fff
+					i 
+						opacity: 1
+						@include triangle(20px,#eee,left)
+		article
+			margin-left: 86px
+			position: relative
+			height: 100%
+			.alert
+				margin-bottom: 10px
+			.block
+				padding: 10px
+			.form
+				margin-bottom: 10px
+			#courses
+				.form
+					margin-top: 10px
+				@include course-li
+			#quotes
+				> div
+					margin-bottom: 10px
+			#songs
+				textarea
+					height: 150px
+				#lyrics
+					position: relative
+					.uploader
+						position: absolute
+						right: 30px
+						top: 50%
+						margin-top: -50px
+						font-size: 100px
+				#recent_songs
+					.song 					
+						.lyrics_container
+							display: none
+							.lyrics 
+								line-height: 1.5
+						.headline
+							position: relative
+							.title
+								line-height: 2
+							.action
+								position: absolute
+								right: 0px
+								top: 50%
+								margin-top: -20px
+								span
+									font-size: 20px

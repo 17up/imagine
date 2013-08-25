@@ -1,0 +1,6 @@
+- if @avatar
+	%a{:href => @member_path}(target = "blank")
+		%img{:src => @avatar,:title => @name}
+- else
+	%span.invite(title = "邀请好友")
+		%i.icon-plus

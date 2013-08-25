@@ -1,0 +1,9 @@
+.alert.alert-info
+	%span.icon-th-list
+	= @quotes.length
+	Results For
+	"
+	= @query
+	"
+- for q in @quotes
+	!= JST['item/quote'](q: q)

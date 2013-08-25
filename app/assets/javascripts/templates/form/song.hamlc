@@ -1,0 +1,6 @@
+%form(action="#" method="post")
+	%input(name="title" placeholder = "标题" type="text" required="required" autocomplete="off")
+	%input(name="artist" placeholder = "演唱者" type="text" required="required" autocomplete="off")
+	%input(name="album" placeholder = "专辑" type="text" required="required" autocomplete="off")
+	%p
+		%textarea(placeholder = "lrc歌词" name="lyrics")

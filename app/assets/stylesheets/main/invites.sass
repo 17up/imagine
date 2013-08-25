@@ -1,0 +1,42 @@
+@import "utils"
+
+#invite
+	#inav
+		background-color: #dff0d8
+		color: #468847
+		font-size: 20px
+		padding: 15px 0px
+		text-align: center
+		line-height: 1.5
+		@include text-shadow-white(#3498db)
+		position: fixed
+		top: 0
+		left: 0
+		width: 100%
+		border-bottom: 5px solid #2980b9
+		a 
+			color: white
+			&:hover
+				color: #ecf0f1
+		#join
+			font-size: 30px
+	.banner
+		margin: 120px 10px 0px 10px
+		border: 2px dashed #fff
+		.title
+			font-size: 18px
+			line-height: 1.5
+			padding-right: 80px
+	.content
+		overflow: auto
+		line-height: 1.5
+		padding-bottom: 40px
+		color: #468847
+		> div
+			margin: 10px 0
+			text-indent: 20px
+		b 
+			color: #e74c3c
+			cursor: pointer
+		i
+			color: #3498db

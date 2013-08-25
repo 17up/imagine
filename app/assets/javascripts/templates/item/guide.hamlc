@@ -1,0 +1,14 @@
+.emotion.mytip(title = "@17up小柒")
+	%a{:class => @emotion}(href="http://weibo.com/17uporg" target="blank")
+!= @text
+- if @num
+	- if @num is 3
+		!= JST['form/uid_form']()
+	- else if @num is 4
+		.form.text_center
+			%span.btn.start
+				立即开始
+	- else
+		%span.next.icon-circle-arrow-right
+- else
+	%span.icon-remove-circle.close

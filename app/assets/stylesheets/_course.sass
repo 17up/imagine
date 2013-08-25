@@ -1,0 +1,72 @@
+@mixin course-li
+	li.opacity
+		opacity: 0.5
+	li:hover
+		opacity: 1
+	li 
+		list-style: none
+		position: relative
+		@include transition(opacity,0.8s)
+		.edit-action
+			text-align: right
+		.headline.no_border
+			border: none
+			@include transition(width,0.3s)
+			@include transition-timing-function(ease)
+			&:hover
+				border-left-width: 10px
+		.headline.open
+			border-left: 5px solid #2ecc71
+		.headline.ready
+			border-left: 5px solid #3498db
+		.headline.draft
+			border-left: 5px solid #d35400
+		.headline.unsave
+			border-left: 5px solid #d3c20a
+
+		.headline
+			position: relative
+			padding-left: 15px
+			padding-right: 140px			
+			.title
+				font-size: 18px
+				line-height: 1.5
+			.u_at,.info
+				font-size: 14px
+			.action
+				position: absolute
+				right: 10px
+				top: 50%
+				margin-top: -22px
+				.label
+					padding: 10px
+				span
+					font-size: 20px
+		.title
+			margin-bottom: 10px				
+		.content
+			overflow: auto
+			line-height: 1.5
+			padding-bottom: 40px
+			> div
+				margin: 10px 0
+				text-indent: 20px
+			b 
+				color: #666
+				cursor: pointer
+				position: relative
+				span
+					display: block
+					position: absolute
+					top: -40px
+					left: 50%
+					margin-left: -110px
+					width: 220px
+					background: #f9f9f9
+					padding: 5px
+			i
+				color: #3498db
+			b.selected
+				color: #e74c3c
+		.tips
+			margin-top: 10px

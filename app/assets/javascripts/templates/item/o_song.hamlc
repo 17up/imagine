@@ -1,0 +1,13 @@
+.headline
+	.title
+		= @title
+	.artist
+		%span.icon-heart
+		= @liked_count
+		= @artist
+	.action
+		%span.btn.preview(title="歌词")
+			%i.icon-eye-open
+.lyrics_container
+	- for lyrics in @lyrics
+		!= JST['item/lrc'](text: lyrics)

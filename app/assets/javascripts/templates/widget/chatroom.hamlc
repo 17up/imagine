@@ -1,0 +1,19 @@
+.ms_text_box
+.ms_audio_box
+.container
+	.inner_wrap
+		#oline_users
+		%input#chat_content(type="text" placeholder="和小伙伴们一起畅谈吧")
+		%span.speech.w_btn
+			%i.icon-microphone
+#invite.alert.hide
+	.close
+		%span.icon-remove-circle	
+	.form
+		这篇文章实在太赞了，怎能不和小伙伴们分享呢？
+	.message.form.alert-success
+		我发现这堂课
+		%span.cname
+		真的很有意思，爱学英语的伙伴们快跟我一起来吧！
+		.share
+			%span.icon-share(title = "发出邀请")

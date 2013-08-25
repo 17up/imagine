@@ -1,0 +1,5 @@
+.form.alert
+	%span.icon-bolt
+	%span.icon-remove-circle.close
+	%strong
+		= @msg

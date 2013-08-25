@@ -1,0 +1,5 @@
+= @title
+.image
+	%span.upload_img(data-uploader="uword" title="点击上传")
+		%img{:src => @img_url }
+		%i.icon-upload-alt

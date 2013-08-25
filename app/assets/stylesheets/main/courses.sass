@@ -1,0 +1,101 @@
+@import "utils"
+@import "course"
+
+#dashboard 
+	#imagine
+		@include user-select(none)
+		.word.active
+			opacity: 1
+		.word
+			text-align: center
+			z-index: 1
+			position: relative
+			opacity: 0
+			@include transition(all,0.8s)
+			.word_card
+				position: relative
+				width: 700px
+				@include box-sizing(border-box)
+				font-size: 22px
+				line-height: 1.2
+				@include transition(all,0.8s)
+		.title
+			line-height: 2
+			color: black
+			@include text-shadow-3d
+			font-size: 120px
+			input
+				font-size: 40px
+				line-height: 1
+				height: 60px
+				text-align: center
+		.tip
+			line-height: 2
+			font-size: 60px
+		.original
+			font-size: 16px
+			padding: 8px
+			line-height: 1.4
+		.speech 
+			margin-top: 20px
+			input
+				cursor: pointer
+				border: 0
+				font-size: 100px
+				width: 42px
+				padding: 10px
+				height: 42px
+				border-radius: 50%
+				@include shadow(0,0,10px,#777,inset)
+				&:focus
+					outline: none
+					border: none
+		.synsets
+			margin: 10px 0
+			text-align: left
+			.syn
+				font-size: 20px
+				font-weight: normal
+			.sentence
+				margin-bottom: 5px
+		.image
+			margin-bottom: 10px
+			img 
+				@include round(10px)
+				@include shadow(0px,1px,3px,rgba(0,0,0,.3))
+			span.empty
+				width: 112px
+				height: 112px 
+				background: asset-url("icon/default.png") no-repeat
+				display: inline-block
+		.audio
+			margin-top: 30px
+			span
+				font-size: 26px
+				cursor: pointer
+				display: inline-block
+				&:hover
+					@include transform(scale(1.4))
+			.play
+				color: #468847
+				margin-left: 15px
+			.record
+				color: #d04f1f
+				margin-right: 15px
+				.icon-spin
+					display: none
+				.icon-circle			
+					display: inline
+			.record.ing
+				pointer-events: none
+				.icon-spin
+					display: inline-block
+				.icon-circle
+					display: none
+	#courses
+		margin: 10px
+		.form
+			margin-bottom: 10px
+			position: relative
+		@include course-li
+			

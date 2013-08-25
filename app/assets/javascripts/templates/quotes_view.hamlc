@@ -1,0 +1,28 @@
+#tag_list
+	.alert.alert-info
+		%span.icon-tags
+		= @tags.count
+		Tags (点击删除标签)
+	- for tag in @tags.top	
+		!= JST['item/tag'](tag: tag)
+			
+#create
+	.alert.alert-info
+		%span.icon-magic
+		Create
+	.form.alert-success
+		%form#cq_form(action="/olive/create_quote" method="post" data-remote="true")
+			%input(name = 'author' placeholder = "输入作者" type="text" required="required")
+			%input.btn(type = "submit" value = "创建")
+			
+#search
+	.alert.alert-info
+		%span.icon-search
+		Search
+	.form.alert-success
+		%form#sq_form(action="/olive/quotes" method="get" data-remote="true")
+			%input(name = 'author' placeholder = "输入作者" type="text" required="required")
+			%input.btn(type = "submit" value = "搜索")
+				
+#quote_list
+		

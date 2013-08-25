@@ -1,0 +1,5 @@
+%span.label
+	%i.num
+		= @tag[1]
+	%span.as_link
+		= @tag[0]

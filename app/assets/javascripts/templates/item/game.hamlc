@@ -1,0 +1,12 @@
+.form.banner.alert-success
+	.title.ellipsis
+		Magical Card Game
+	.desc.ellipsis.dancer
+		= @num
+		missions
+	.action
+		%span.enter.w_btn
+			%i.icon-gamepad
+		%span.back.w_btn
+			%i.icon-reply
+.info_container

@@ -1,0 +1,13 @@
+#user_info{"data-uid" => @user._id}
+	.avatar
+		= image_tag(@user.avatar)
+	.info
+		.name
+			= @user.name
+		.providers
+			- @user.authorizations.each do |p|
+				= link_to p.link,:target => "blank" do 
+					%span{:class => "icon-#{p.provider}"}
+
+- content_for :footer do
+	#init.hide(data-js="UserShow")
