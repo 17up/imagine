@@ -10,7 +10,7 @@ set :rvm_ruby_string, 'ruby-2.0.0-p0'
 set :rvm_type, :user
 
 set :application, "17up"
-set :repository,  "git@17up.org:repositories/imagine.git"
+set :repository,  "https://github.com/17up/imagine.git"
 set :branch, "master"
 set :scm, :git
 

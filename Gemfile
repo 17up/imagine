@@ -66,7 +66,6 @@ end
 
 group :development, :test do
 	gem 'haml-rails'
-	gem 'sqlite3'
 	gem 'rspec-rails', '~> 2.10.0'
 	gem 'factory_girl_rails'
 	gem 'quiet_assets'
