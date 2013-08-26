@@ -8,19 +8,22 @@ class window.Olive.CoursesView extends Olive.View
 	addOne: (course) ->
 		view = new Olive.CourseView
 			model: course
-		@$el.append(view.render().el)
+		$("#courses",@$el).append(view.render().el)
 	render: ->
 		template = @template()
-		@$el.html(template)			
+		@$el.html(template)				
 		this
 	filter: (e) ->
 		status = $(e.currentTarget).val()
 		@collection.fetch
 			url: @collection.url + "?status=" + status
 			success: (data) =>
-				$("li",@$el).remove()
-				@extra()
-	extra: ->
+				$("#courses",@$el).html("")
+				@addCourses()
+	addCourses: ->
 		for c in @collection.models
 			@addOne(c)
+	extra: ->
+		$("#c_filter").fancySelect()
+		@addCourses()
 		super()
