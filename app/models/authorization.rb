@@ -15,7 +15,7 @@ class Authorization
   belongs_to :member
   after_create :send_greet
 
-  PROVIDERS = %w{twitter weibo github tumblr instagram youtube}
+  PROVIDERS = %w{qq_connect weibo twitter github instagram youtube}
 
   def self.official(provider)
     Authorization.where(provider: provider).first
@@ -44,7 +44,7 @@ class Authorization
 		if self.member.authorizations.length == 1
 		  # 注册 save avatar from provider
 		  self.member.save_avatar(avatar(:large))
-		end     
+		end
     HardWorker::SendGreetJob.perform_async(self._id.to_s)
   end
 
@@ -98,7 +98,7 @@ class Authorization
         bindings[:view].link_to(value,bindings[:object].link)
       end
     end
-    field :uid 
+    field :uid
     field :member
   end
 

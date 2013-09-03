@@ -227,6 +227,9 @@ GEM
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
+    omniauth-qq-connect (0.2.0)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.0)
     omniauth-tumblr (1.1)
       omniauth-oauth (~> 1.0)
     omniauth-twitter (1.0.0)
@@ -461,6 +464,7 @@ DEPENDENCIES
   nokogiri (~> 1.5.0)
   omniauth-github
   omniauth-instagram
+  omniauth-qq-connect
   omniauth-tumblr
   omniauth-twitter
   omniauth-weibo-oauth2 (~> 0.2.0)

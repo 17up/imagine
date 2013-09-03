@@ -36,6 +36,7 @@ gem 'rails_admin'
 
 gem "devise"
 gem "httparty"
+gem 'omniauth-qq-connect'
 gem "omniauth-weibo-oauth2", '~> 0.2.0'
 gem "omniauth-twitter"
 gem "omniauth-github"

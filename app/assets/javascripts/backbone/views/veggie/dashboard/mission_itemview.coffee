@@ -4,9 +4,9 @@ class window.Veggie.MissionView extends Marionette.ItemView
 	id: ->
 		@model.get('title')
 	attributes: ->
-		"data-x": @model.get('num')*2000 + @model.get("sub")*1000
-		"data-y": -@model.get('num')*1000 
-		"data-z": -@model.get('num')*1500	
+		"data-x": @model.get('num')*1000
+		"data-y": 0
+		"data-z": -@model.get('num')*1000	
 		"data-scale": "1"
 	template: JST['item/mission']
 	events: ->

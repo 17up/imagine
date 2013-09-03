@@ -2,6 +2,7 @@ class window.Veggie.GameView extends Marionette.ItemView
 	id: "game"
 	className: "left"
 	template: JST['item/game']
+	# collection: new Veggie.Words()
 	events:
 		"click .enter": "enter"
 		"click .back": "back"
@@ -23,6 +24,11 @@ class window.Veggie.GameView extends Marionette.ItemView
 						"-webkit-transform": "translateX(0)"
 		@$el.parent().siblings().hide()
 		@$el.siblings().hide()
+		@collection = new Veggie.Words @model.get("data")
+		for mission,i in @collection.models
+			mission = mission.set num: i
+			@addOneMission(mission)
+		@imagine_missions()
 	back: (e) ->
 		$action = $(e.currentTarget).parent()
 		$(".info_container",@$el).hide()
@@ -33,9 +39,11 @@ class window.Veggie.GameView extends Marionette.ItemView
 		$action.css 
 			"-webkit-transform": "translateX(120px)"
 		$("body").css "overflow":"auto"
-	addOneMission: (mission) ->
-		view = new Veggie.MissionView
-			model: mission		 
+	addOneMission: (mission,opts = {}) ->
+		options = _.extend
+			model: mission
+			opts
+		view = new Veggie.MissionView options	 
 		new_step = view.render().el
 		$("#imagine").append(new_step)
 	

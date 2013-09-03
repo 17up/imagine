@@ -50,12 +50,14 @@ class window.Veggie.DashboardView extends Veggie.View
 						32: null
 						# 37: null
 						# 39: null
-
-			$("#imagine").jmpress("route", "#iend", true)
-			$("#imagine").jmpress("route", "#ihome", true, true)
-			cid = @current_course.get("_id")
-			if step = $.jStorage.get "course_#{cid}"
-				$("#imagine").jmpress "goTo","#" + step
+			if $("#imagine").find("#iend").length isnt 0
+				$("#imagine").jmpress("route", "#iend", true)
+			if $("#imagine").find("#ihome").length isnt 0
+				$("#imagine").jmpress("route", "#ihome", true, true)
+			if @current_course
+				cid = @current_course.get("_id")
+				if step = $.jStorage.get "course_#{cid}"
+					$("#imagine").jmpress "goTo","#" + step
 			$("#imagine").show()
 			$("#icontrol").show().addClass 'active'
 			@$el.css "height":"100%"

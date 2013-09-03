@@ -1,14 +1,14 @@
 module HardWorker
   class Base
     include Sidekiq::Worker
-    sidekiq_options retry: false 
-    
+    sidekiq_options retry: false
+
     def logger(msg)
       Logger.new(File.join(Rails.root,"log","sidekiq-job.log")).info("[#{self.class}] #{msg}")
     end
   end
-    
-  class SendGreetJob < Base          
+
+  class SendGreetJob < Base
     def perform(id, opts={})
       provider = Authorization.find(id)
       self.logger(provider.user_name)
@@ -31,10 +31,13 @@ module HardWorker
         Wali::Base.new(provider).client.statuses_update(message)
       when "twitter"
         Wali::Base.new(provider).client.update(message)
+      when "qq_connect"
+        #To-Do
       end
     end
   end
-  
+
+  # Be Removed
   class UploadOlive < Base
 
     def perform(content,pic)
@@ -51,5 +54,5 @@ module HardWorker
       Wali::Base.new(veggie).client.update_with_media(content,File.open(pic))
     end
   end
-  
+
 end

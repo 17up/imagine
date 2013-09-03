@@ -4,12 +4,12 @@ class Member
 
   devise :database_authenticatable, :registerable,:token_authenticatable,
          :recoverable, :trackable, :validatable,
-         :omniauthable, omniauth_providers: [:weibo,:twitter,:github,:tumblr,:instagram,:youtube]
+         :omniauthable, omniauth_providers: [:weibo,:twitter,:github,:tumblr,:instagram,:youtube,:qq_connect]
 
   ## Database authenticatable
   field :email,              type: String, default: ""
   field :encrypted_password, type: String, default: ""
-  
+
   ## Recoverable
   field :reset_password_token,   type: String
   field :reset_password_sent_at, type: Time
@@ -25,7 +25,7 @@ class Member
   field :authentication_token, type: String
   #field :ios_device_token
 
-  field :role 
+  field :role
   field :uid
   field :gems, type: Integer, default: 0
   field :friend_ids, type: Array, default: []
@@ -57,14 +57,14 @@ class Member
   AVATAR_SIZE_LIMIT = 3000*1000 #3m
   THUMB_SIZE = 120
   DEFAULT_GEMS = 10
-  ## role 用户组别 
+  ## role 用户组别
   ROLE = %w{a u t}
   # nil 三无用户，被清理对象
   scope :x, -> {where(role: nil)}
   ROLE.each do |r|
     scope r.to_sym, -> {where(role: r)}
   end
-  
+
   def admin?
     self.role == "a"
   end
@@ -72,7 +72,7 @@ class Member
   def is_teacher?
     self.role == "t" || admin?
   end
-  
+
   def is_member?
     role.present?
   end
@@ -89,7 +89,7 @@ class Member
     self.set :gems,gems
   end
 
-  def invited_courses 
+  def invited_courses
     cids = Invite.inside.where(target: self._id).collect(&:course_id).uniq
     Course.where(:_id.in => cids)
   end
@@ -138,12 +138,12 @@ class Member
     a = has_u_word(wid)
     a&&a.image
   end
-  
+
   def name
     p = self.authorizations.first
     p ? p.user_name : $config[:author]
   end
-  
+
   def has_provider?(p)
     self.authorizations.where(provider: p).first
   end
@@ -199,7 +199,7 @@ class Member
 
   def clear_data
     `rm -rf #{AVATAR_PATH + _id}`
-  end 
+  end
 
   def as_json
     ext = {
@@ -235,14 +235,14 @@ class Member
     field :role
     field :gems
     field :c_at
-    field :last_sign_in_ip do 
+    field :last_sign_in_ip do
       label "IP"
     end
     field :authorizations
-    field :current_sign_in_at do 
+    field :current_sign_in_at do
       label "Time"
     end
-    field :friend_ids do 
+    field :friend_ids do
       label "Frds"
       pretty_value do
         value.length
