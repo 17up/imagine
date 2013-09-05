@@ -59,6 +59,8 @@ class Authorization
 
   def link
     case provider
+    when "qq_connect"
+      ""
     when "weibo"
       link = info['urls']['Weibo']
       link.blank? ? "http://weibo.com/#{uid}" : link
