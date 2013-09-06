@@ -36,7 +36,7 @@ gem 'rails_admin'
 
 gem "devise"
 gem "httparty"
-gem 'omniauth-qq-connect'
+gem 'omniauth-qq-connect',:git => "https://github.com/kkxlkkxllb/omniauth-qq-connect.git"
 gem "omniauth-weibo-oauth2", '~> 0.2.0'
 gem "omniauth-twitter"
 gem "omniauth-github"

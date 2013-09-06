@@ -10,6 +10,14 @@ GIT
       tzinfo (~> 0.3.22)
 
 GIT
+  remote: https://github.com/kkxlkkxllb/omniauth-qq-connect.git
+  revision: 4bed1f4128caeca61d73829fb78ad272d865bc1d
+  specs:
+    omniauth-qq-connect (0.2.0)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.0)
+
+GIT
   remote: https://github.com/kkxlkkxllb/omniauth-youtube.git
   revision: 6bbf6031858ce372dcfca3d78e807765e7331d1d
   specs:
@@ -227,9 +235,6 @@ GEM
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
-    omniauth-qq-connect (0.2.0)
-      omniauth (~> 1.0)
-      omniauth-oauth2 (~> 1.0)
     omniauth-tumblr (1.1)
       omniauth-oauth (~> 1.0)
     omniauth-twitter (1.0.0)
@@ -464,7 +469,7 @@ DEPENDENCIES
   nokogiri (~> 1.5.0)
   omniauth-github
   omniauth-instagram
-  omniauth-qq-connect
+  omniauth-qq-connect!
   omniauth-tumblr
   omniauth-twitter
   omniauth-weibo-oauth2 (~> 0.2.0)
