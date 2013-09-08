@@ -5,16 +5,16 @@ module Wali
 
 		def initialize(provider, opts={})
 			@provider = provider
-	  	end
+		end
 
-	  	def client(auth = nil)
-		  	unless auth and auth.class == Authorization
-			  	auth = @provider
+		def client(auth = nil)
+			unless auth and auth.class == Authorization
+				auth = @provider
 			end
 
 			case auth.provider
-		  	when "qq_connect"
-		  		client = ::Qq::Client.new(auth.token,auth.uid)
+			when "qq_connect"
+				client = ::Qq::Client.new(auth.token,auth.uid)
 			when "weibo"
 				client = ::Weibo::Client.new(auth.token,auth.uid)
 			when "twitter"
@@ -23,12 +23,12 @@ module Wali
 					:oauth_token_secret => auth.secret
 				)
 			when "github"
-			  	client = Github.new oauth_token: auth.token
+				client = Github.new oauth_token: auth.token
 			when "tumblr"
-			  	client = Tumblr.new(
+				client = Tumblr.new(
 					:oauth_token => auth.token,
 					:oauth_token_secret => auth.secret
-			  	)
+				)
 			when "instagram"
 				client = Instagram.client(:access_token => auth.token)
 			when "youtube"
@@ -39,14 +39,14 @@ module Wali
 					client_id: "17up.org",
 					client_secret: auth.secret,
 					dev_key: key,
-					client_token_expires_at: auth.expired_at.to_i.to_s)
+				client_token_expires_at: auth.expired_at.to_i.to_s)
 				#client.refresh_access_token!
 			end
-	  	end
+		end
 
-	  	def logger(msg)
+		def logger(msg)
 			Logger.new(File.join(Rails.root,"log","wali.log")).info(self.class.to_s + " [#{Time.now.to_s}] " + msg.to_s)
-	  	end
+		end
 
 	end
 
@@ -69,9 +69,9 @@ module Wali
 			end
 		end
 
-	  	def deliver
-	  		content = I18n.t("greet.new_user.#{get_time}",:name => @provider.at_name)
-	  		veggie = Authorization.official(@provider.provider)
+		def deliver
+			content = I18n.t("greet.new_user.#{get_time}",:name => @provider.at_name)
+			veggie = Authorization.official(@provider.provider)
 			case @provider.provider
 			when "qq_connect"
 				# 得到用户腾讯微博资料并发出一条官方欢迎信息
@@ -79,15 +79,15 @@ module Wali
 				@provider.info["urls"]["Tqq"] = "http://t.qq.com/"  + client.get_info["data"]["name"]
 				@provider.save
 			when "weibo"
-			  	data = client(veggie).statuses_update(content)
-			  	@provider.info["tags"] = Weibo.new(@provider).tags
-			  	@provider.save
+				data = client(veggie).statuses_update(content)
+				@provider.info["tags"] = Weibo.new(@provider).tags
+				@provider.save
 			when "twitter"
-			  	data = client(veggie).update(content)
+				data = client(veggie).update(content)
 			when "github"
-			  	client(veggie).users.followers.follow @provider.at_name
+				client(veggie).users.followers.follow @provider.at_name
 			when "tumblr"
-			  	client(veggie).follow @provider.metadata["blogs"][0]["url"]
+				client(veggie).follow @provider.metadata["blogs"][0]["url"]
 			when "instagram"
 				client(veggie).follow_user(@provider.uid)
 			when "youtube"
@@ -96,7 +96,7 @@ module Wali
 			if data
 				logger(data['id'].to_s + " send greet success to #{@provider.user_name}")
 			end
-	  	end
+		end
 
 	end
 
@@ -138,5 +138,3 @@ module Wali
 	end
 
 end
-
-
