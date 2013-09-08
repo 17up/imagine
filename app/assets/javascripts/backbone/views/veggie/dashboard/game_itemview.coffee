@@ -36,6 +36,7 @@ class window.Veggie.GameView extends Marionette.ItemView
 		@$el.css "margin-left": "10px"
 		@$el.siblings().show()
 		@$el.parent().siblings().show()
+		$(".banner",@$el).removeClass 'opacity'
 		@$el.removeClass("enter_in").addClass("left").css "width":"50%"
 		$action.css
 			"-webkit-transform": "translateX(120px)"
@@ -54,4 +55,4 @@ class window.Veggie.GameView extends Marionette.ItemView
 
 	imagine_missions: ->
 		window.route.active_view.init_imagine()
-		@$el.addClass 'opacity'
+		$(".banner",@$el).addClass 'opacity'

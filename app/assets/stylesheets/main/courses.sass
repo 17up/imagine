@@ -1,12 +1,12 @@
 @import "utils"
 @import "course"
 
-#dashboard 
+#dashboard
 	.quote
 		margin-bottom: 10px
 		line-height: 1.5
 		padding: 8px 14px
-		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)	
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
 
 		.author
 			display: block
@@ -30,7 +30,6 @@
 				@include transition(all,0.8s)
 		.title
 			line-height: 2
-			color: black
 			@include text-shadow-3d
 			font-size: 120px
 			input
@@ -45,7 +44,7 @@
 			font-size: 16px
 			padding: 8px
 			line-height: 1.4
-		.speech 
+		.speech
 			margin-top: 20px
 			input
 				cursor: pointer
@@ -69,12 +68,12 @@
 				margin-bottom: 5px
 		.image
 			margin-bottom: 10px
-			img 
+			img
 				@include round(10px)
 				@include shadow(0px,1px,3px,rgba(0,0,0,.3))
 			span.empty
 				width: 112px
-				height: 112px 
+				height: 112px
 				background: asset-url("icon/default.png") no-repeat
 				display: inline-block
 		.audio
@@ -93,7 +92,7 @@
 				margin-right: 15px
 				.icon-spin
 					display: none
-				.icon-circle			
+				.icon-circle
 					display: inline
 			.record.ing
 				pointer-events: none
@@ -107,4 +106,4 @@
 			margin-bottom: 10px
 			position: relative
 		@include course-li
-			
+

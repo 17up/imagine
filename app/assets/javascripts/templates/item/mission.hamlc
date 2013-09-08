@@ -1,5 +1,9 @@
-= @title
-.image
+- if @u_word_image
 	%span.upload_img(data-uploader="uword" title="点击上传")
-		%img{:src => @img_url }
+		%img{:src => @u_word_image }
 		%i.icon-upload-alt
+- else
+	.title.upload_img(data-uploader="uword" title="点击上传")
+		= @title
+		%i.icon-upload-alt
+
