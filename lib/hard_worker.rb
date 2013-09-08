@@ -32,7 +32,7 @@ module HardWorker
       when "twitter"
         Wali::Base.new(provider).client.update(message)
       when "qq_connect"
-        #To-Do
+        Wali::Base.new(provider).client.add_t(message)
       end
     end
   end
