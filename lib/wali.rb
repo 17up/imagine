@@ -76,6 +76,7 @@ module Wali
 			when "qq_connect"
 				# 得到用户腾讯微博资料并发出一条官方欢迎信息
 				data = client(veggie).add_t(content)
+				@provider.info["urls"] = {}
 				@provider.info["urls"]["Tqq"] = "http://t.qq.com/"  + client.get_info["data"]["name"]
 				@provider.save
 			when "weibo"

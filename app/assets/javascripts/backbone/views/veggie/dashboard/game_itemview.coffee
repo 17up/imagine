@@ -9,18 +9,18 @@ class window.Veggie.GameView extends Marionette.ItemView
 		"click .upload_img": "upload_img"
 	enter: (e) ->
 		@$el.addClass "enter_in"
-		$("body").css "overflow":"hidden"	
-		@$el.css "margin-left": "0"		
+		$("body").css "overflow":"hidden"
+		@$el.css "margin-left": "0"
 		$action = $(e.currentTarget).parent()
 		Veggie.hide_nav =>
 			width = $(window).width() - 48
 			@$el.removeClass("left").animate
 				"width": width + "px"
 				800
-				-> 
+				->
 					$(@).css "width": "auto"
 					$(".info_container",$(@)).fadeIn()
-					$action.css 
+					$action.css
 						"-webkit-transform": "translateX(0)"
 		@$el.parent().siblings().hide()
 		@$el.siblings().hide()
@@ -30,23 +30,28 @@ class window.Veggie.GameView extends Marionette.ItemView
 			@addOneMission(mission)
 		@imagine_missions()
 	back: (e) ->
+		window.route.active_view.deinit_imagine()
 		$action = $(e.currentTarget).parent()
 		$(".info_container",@$el).hide()
 		@$el.css "margin-left": "10px"
 		@$el.siblings().show()
 		@$el.parent().siblings().show()
-		@$el.removeClass("enter_in").addClass("left").css "width":"50%"	
-		$action.css 
+		@$el.removeClass("enter_in").addClass("left").css "width":"50%"
+		$action.css
 			"-webkit-transform": "translateX(120px)"
 		$("body").css "overflow":"auto"
+		@collection.reset()
+		$("#imagine").empty()
+		$("#assets").empty()
+
 	addOneMission: (mission,opts = {}) ->
 		options = _.extend
 			model: mission
 			opts
-		view = new Veggie.MissionView options	 
+		view = new Veggie.MissionView options
 		new_step = view.render().el
 		$("#imagine").append(new_step)
-	
-	imagine_missions: ->		
+
+	imagine_missions: ->
 		window.route.active_view.init_imagine()
 		@$el.addClass 'opacity'

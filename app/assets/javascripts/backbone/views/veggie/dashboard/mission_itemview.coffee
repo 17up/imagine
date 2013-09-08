@@ -6,7 +6,7 @@ class window.Veggie.MissionView extends Marionette.ItemView
 	attributes: ->
 		"data-x": @model.get('num')*1000
 		"data-y": 0
-		"data-z": -@model.get('num')*1000	
+		"data-z": -@model.get('num')*1000
 		"data-scale": "1"
 	template: JST['item/mission']
 	events: ->
@@ -17,7 +17,7 @@ class window.Veggie.MissionView extends Marionette.ItemView
 		@listenTo(@model, 'destroy', @remove)
 
 	enterStep: (e) ->
-		max = ($("#imagine .step").length+1)/3
+		max = $("#imagine .step").length - 1
 		percent = @model.get('num')*100/max
 		$("#progress .current_bar").css "width": "#{percent}%"
 		#$("footer #uploader .uword input[name='_id']").val @model.get("_id")
