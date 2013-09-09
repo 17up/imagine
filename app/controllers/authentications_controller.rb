@@ -60,7 +60,7 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
 		provider.update_attributes(
 			token: omniauth.credentials.token,
 			secret: omniauth.credentials.secret,
-			info: omniauth.info,
+			#info: omniauth.info,
 			expired_at: expires_time,
 			refresh_token: omniauth.credentials.refresh_token
 		)
