@@ -10,6 +10,9 @@
 				知行合一
 				%br
 				以联想的方式学英语
+			%p.text_center
+				%a(href="/members/auth/qq_connect")
+					= image_tag("icon/qq_connect.png")
 		#belief.amienne.step(data-x="0" data-y="600" data-z="1500" data-scale="1")
 			#love-map
 				%span.dancer
@@ -18,7 +21,7 @@
 					✈
 			.title.amienne
 				Love can change anything
-			
+
 		#login.step(data-x="0" data-y="-600" data-z="0" data-scale="1")
 			.desc
 				还差
@@ -32,13 +35,13 @@
 					= link_to member_omniauth_authorize_path(x.to_sym) do
 						%span{:class => "icon-#{x}",:title => x}
 
-		
+
 		#app.step.text_center(data-x="0" data-y="-1800" data-z="1500"  data-scale="1")
 			.desc
-				移动应用正在开发中，敬请期待！			
+				移动应用正在开发中，敬请期待！
 				%span.icon-fire
 			%p
-				= render 'shared/copyright'	
+				= render 'shared/copyright'
 	%nav
 		%ul.tab
 			%li
@@ -53,5 +56,5 @@
 			%li
 				%a(href = "#app")
 					应用
-- content_for :footer do	
+- content_for :footer do
 	#init.hide(data-js="Welcome")
