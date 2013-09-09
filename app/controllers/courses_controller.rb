@@ -6,20 +6,20 @@ class CoursesController < ApplicationController
 	def checkin
 		if @course = Course.find(params[:_id])
 			if gems = current_member.checkin(@course)
-			 	render_json 0,"ok",gems
+				render_json 0,"ok",gems
 			else
-			 	render_json -2,"not enough gems"
-			end		
+				render_json -2,"not enough gems"
+			end
 		else
 			render_json -1,"no course"
 		end
 	end
 
-  def update
+	def update
 		unless params[:_id].present? and find_member_course
 			@course = current_member.courses.new
-		end	
-		if @course.make_draft(params[:title],params[:tags],params[:content].strip)		
+		end
+		if @course.make_draft(params[:title],params[:tags],params[:content].strip)
 			render_json 0,"save success",@course.as_json
 		else
 			render_json -1,"fail"
@@ -28,7 +28,7 @@ class CoursesController < ApplicationController
 
 	def ready
 		if find_member_course
-			if @course.make_ready params[:raw_content]			
+			if @course.make_ready params[:raw_content]
 				render_json 0,"wait for open"
 			else
 				render_json -2,"words limit 40"
@@ -40,7 +40,7 @@ class CoursesController < ApplicationController
 
 	def open
 		if find_member_course
-			@course.make_open					
+			@course.make_open
 			render_json 0,"open"
 		else
 			render_json -1,"no course"

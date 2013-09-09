@@ -4,6 +4,7 @@
     %meta(charset="utf-8")
     %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
     %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    %meta(property="qc:admins" content="743156116506727")
     %meta{'name' => "description", :content => "#{@meta_description}"}
     %meta{'name' => "keywords", :content => "#{@meta_keywords}"}
     %title= raw @title
@@ -18,8 +19,8 @@
     %link(href="/favicon.png" rel="shortcut icon")
   %body
     %section
-      = yield 
-    %footer     
+      = yield
+    %footer
       = yield :footer
 
-    
+

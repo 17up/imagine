@@ -15,8 +15,8 @@ class SongsController < ApplicationController
 		song = Song.find(params[:_id])
 		@store_path = Song::AUDIO_PATH + "#{song._id}"
 		unless File.exist?(@store_path)
-	    `mkdir -p #{@store_path}`
-	  end
+			`mkdir -p #{@store_path}`
+		end
 		file = params[:audio]
 		format = file.original_filename.split(".")[-1].downcase
 		song.update_attribute(:format,format)

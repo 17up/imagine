@@ -1,8 +1,8 @@
 class Song
-  include Mongoid::Document
-  include Concerns::Likeable
+	include Mongoid::Document
+	include Concerns::Likeable
 
-  field :lyrics
+	field :lyrics
 	field :artist
 	field :album
 	field :title
@@ -19,8 +19,8 @@ class Song
 	AUDIO_PATH = "#{Rails.root}/public" + AUDIO_URL
 
 	def update_time
-    self.set(:u_at,Time.current)
-  end
+		self.set(:u_at,Time.current)
+	end
 
 	def audio_path
 		AUDIO_PATH + "#{_id}/#{$config[:name]}." + format if format
@@ -40,24 +40,24 @@ class Song
 	end
 
 	def clear_data
-    `rm -rf #{AUDIO_PATH + _id}`
-  end 
+		`rm -rf #{AUDIO_PATH + _id}`
+	end
 
-	rails_admin do 
+	rails_admin do
 		list do
-	  	field :title
-	  	field :artist
-	  	field :album
-	  	field :format
-	  	field :lyrics, :text
-	  end
-	  show do 
-      configure :liked_member_ids do 
-      	label "liked members"
-        pretty_value do 
-        	Member.where(:_id.in => value).collect(&:name).join(",")
-        end
-      end
-    end
+			field :title
+			field :artist
+			field :album
+			field :format
+			field :lyrics, :text
+		end
+		show do
+			configure :liked_member_ids do
+				label "liked members"
+				pretty_value do
+					Member.where(:_id.in => value).collect(&:name).join(",")
+				end
+			end
+		end
 	end
 end

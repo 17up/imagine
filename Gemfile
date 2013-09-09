@@ -43,6 +43,7 @@ gem "omniauth-github"
 gem 'omniauth-tumblr'
 gem 'omniauth-instagram'
 gem 'omniauth-youtube',:git => "https://github.com/kkxlkkxllb/omniauth-youtube.git"
+gem 'qq_17up', "~> 4.0.2"
 gem "weibo_17up", "~> 0.4.7"
 gem "twitter"
 gem "tumblr_client", ">= 0.6.7"

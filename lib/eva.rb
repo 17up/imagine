@@ -32,7 +32,7 @@ module Eva
 			@quotes = ::Quote.tag_by(tag).desc("u_at").limit(50)
 			@quotes.map(&:as_short_json)
 		end
-		
+
 	end
 
 	class Song < Base
@@ -68,6 +68,6 @@ module Eva
 				@member.save
 			end
 		end
-		
+
 	end
 end

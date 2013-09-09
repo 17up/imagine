@@ -49,12 +49,12 @@ class OliveController < ApplicationController
 		else
 			msg = "no author"
 		end
-		render_json 0,msg	
+		render_json 0,msg
 	end
 
 	# single tag delete
 	def destroy_tag
-		@quotes = Quote.where(tags: params[:tag]) 
+		@quotes = Quote.where(tags: params[:tag])
 		count = @quotes.count
 		if count != 0
 			@quotes.each do |q|
@@ -67,11 +67,11 @@ class OliveController < ApplicationController
 	end
 
 	private
-  	def authenticate_admin
-    	unless current_member and current_member.admin?
-      		redirect_to new_member_session_path(admin: 1)
-    	end
-  	end
+	def authenticate_admin
+		unless current_member and current_member.admin?
+			redirect_to new_member_session_path(admin: 1)
+		end
+	end
 
 	def photos(provider,title)
 		provider.new.tagged(title).map{|x| x[:photo] }

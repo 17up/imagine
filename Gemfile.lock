@@ -246,6 +246,8 @@ GEM
     origin (1.1.0)
     orm_adapter (0.4.0)
     polyglot (0.3.3)
+    qq_17up (4.0.2)
+      rest-client
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
@@ -474,6 +476,7 @@ DEPENDENCIES
   omniauth-twitter
   omniauth-weibo-oauth2 (~> 0.2.0)
   omniauth-youtube!
+  qq_17up (~> 4.0.2)
   quiet_assets
   rack-cors
   rails (= 4.0)

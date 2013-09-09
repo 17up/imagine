@@ -29,14 +29,14 @@ body
 		&:hover
 			color: $hover-green
 			border-color: $hover-green
-	.content,textarea,input[type='text'],.lyrics,.tip
+	.title,.content,textarea,input[type='text'],.lyrics,.tip
 		color: $green
 	#{$all-text-inputs-focus},textarea:focus
 		border-color: $green
 	span.invite
 		color: $green
 		border: 2px dotted $green
-body.wis 
+body.wis
 	background: asset-url('img/bg/bg_home.png') $bg_color_wis
 	nav,aside
 		@include text-shadow-white($nav_color_wis,asset-url('img/noise.png'))
@@ -51,32 +51,32 @@ body.wis
 		&:hover
 			color: $hover-wisteria
 			border-color: $hover-wisteria
-	.content,textarea,input[type='text'],.lyrics,.tip
+	.title,.content,textarea,input[type='text'],.lyrics,.tip
 		color: $wisteria
 	#{$all-text-inputs-focus},textarea:focus
 		border-color: $wisteria
 	span.invite
 		color: $wisteria
 		border: 2px dotted $wisteria
-body,body.wis 
+body,body.wis
 	.btn.pink
 		color: $pink
 		&:hover
 			color: $hover-pink
 			border-color: $hover-pink
 body.veggie
-	overflow: auto	
+	overflow: auto
 	nav
-		height: $nav_height	
+		height: $nav_height
 		position: fixed
 		z-index: 997
 		@include shadow(0,1px,3px,#666)
 		width: 100%
-		#nav 
+		#nav
 			height: 100%
-		.avatar		
+		.avatar
 			cursor: pointer
-			margin: 10px	
+			margin: 10px
 			position: absolute
 			img
 				width: 60px
@@ -103,7 +103,7 @@ body.veggie
 			padding-right: 80px
 			height: 100%
 			.name
-				line-height: 2				
+				line-height: 2
 				font-size: 24px
 				font-family: "Lobster"
 		.brand
@@ -123,7 +123,7 @@ body.veggie
 			cursor: pointer
 			@include transition(all,0.8s)
 			&:hover
-				@include transform(rotate(360deg) scale(1.2)) 
+				@include transform(rotate(360deg) scale(1.2))
 	#container
 		position: relative
 		height: 100%
@@ -139,8 +139,8 @@ body.veggie
 			ul#side_nav
 				margin: $nav_height 0 0 0
 				padding: 0
-				
-				li 
+
+				li
 					list-style-type: none
 					margin: 0
 					padding: 24px 5px
@@ -157,7 +157,7 @@ body.veggie
 						color: white
 				li.active
 					color: white
-					i 
+					i
 						opacity: 1
 						@include triangle(20px,#eee,left)
 		article
@@ -167,8 +167,8 @@ body.veggie
 			.emotion
 				a
 					display: block
-					width: 40px 
-					height: 40px 
+					width: 40px
+					height: 40px
 				$collection: ('common','surprise','sweet','bad','reward')
 				@each $n in $collection
 					a.#{$n}
@@ -182,5 +182,5 @@ body.veggie
 				width: 100%
 			#dashboard
 				#set_uid
-					margin-top: 10px 
+					margin-top: 10px
 					border: 2px dashed
