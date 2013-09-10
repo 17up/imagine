@@ -13,9 +13,10 @@ $blue: #3498db
 	#ahome
 		.profile
 			margin: 10px 0
+			.uid
+				margin-bottom: 10px
 			a
 				color: white
-				border: 2px dotted
 		.providers
 			padding: 10px 0
 			.item
@@ -35,7 +36,7 @@ $blue: #3498db
 						color: white
 						background: $yellow
 			.binded
-				a 
+				a
 					color: $blue
 					@include shadow(0,0,0,4px,$blue)
 					&:hover
@@ -64,7 +65,7 @@ $blue: #3498db
 		.headline
 			position: relative
 			height: 64px
-			img 
+			img
 				position: absolute
 				left: 5px
 				top: 5px

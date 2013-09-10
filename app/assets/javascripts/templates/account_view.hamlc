@@ -5,10 +5,12 @@
 				%a.label.label-orange.active(href = "/members/sign_out" data-method="delete" rel="nofollow")
 					%span.icon-off
 					退出帐户
-				%a.label{:href => @member_path}
-					= @uid
-				%a.label(target = "blank" href="http://sighttp.qq.com/authd?IDKEY=a191f7382640a0df14dff0ba8fd11f48aaa896ef5396d5b3")
+				%a.label.label-success(target = "blank" href="http://sighttp.qq.com/authd?IDKEY=a191f7382640a0df14dff0ba8fd11f48aaa896ef5396d5b3")
+					%span.icon-comment
 					意见反馈
+				%a.label{:href => @member_path}
+					%span.icon-user
+					= @uid
 			.c_at
 				%span.label
 					%span.icon-time
