@@ -1,12 +1,14 @@
 #account_wrap
 	#ahome.step(data-x="0" data-y="0" data-z="0" data-scale="1")
 		.profile
-			.uid		
+			.uid
 				%a.label.label-orange.active(href = "/members/sign_out" data-method="delete" rel="nofollow")
 					%span.icon-off
 					退出帐户
 				%a.label{:href => @member_path}
-					= @uid		
+					= @uid
+				%a.label(target = "blank" href="http://sighttp.qq.com/authd?IDKEY=a191f7382640a0df14dff0ba8fd11f48aaa896ef5396d5b3")
+					意见反馈
 			.c_at
 				%span.label
 					%span.icon-time
@@ -48,7 +50,7 @@
 			%span.icon-link
 			其他社交帐号
 		.providers.clearfix
-			- for p in @providers	
+			- for p in @providers
 				- if p.has_bind
 					.item.pull-left.binded
 						%a{:href => "#/" + p.provider}
@@ -57,4 +59,4 @@
 					.item.pull-left
 						%a{:href => p.omniauth_url}
 							%span{:class => "icon-#{p.provider}",:title => p.provider}
-	
+
