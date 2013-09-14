@@ -11,19 +11,21 @@ class window.Olive.CoursesView extends Olive.View
 		$("#courses",@$el).append(view.render().el)
 	render: ->
 		template = @template()
-		@$el.html(template)				
+		@$el.html(template)
 		this
 	filter: (e) ->
-		status = $(e.currentTarget).val()
-		@collection.fetch
-			url: @collection.url + "?status=" + status
-			success: (data) =>
-				$("#courses",@$el).html("")
-				@addCourses()
+		if status = $(e.currentTarget).val()
+			@collection.fetch
+				url: @collection.url + "?status=" + status
+				success: (data) =>
+					$("#courses",@$el).html("")
+					@addCourses()
 	addCourses: ->
 		for c in @collection.models
 			@addOne(c)
 	extra: ->
-		$("#c_filter").fancySelect()
+		$("#c_filter").selectize
+			create: true
+			sortField: 'text'
 		@addCourses()
 		super()

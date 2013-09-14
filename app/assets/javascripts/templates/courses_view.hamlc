@@ -1,4 +1,4 @@
-%select#c_filter
+%select#c_filter(placeholder="请选择一种类别")
 	%option(value="open")
 		已发布课程
 	%option(value="ready" selected)

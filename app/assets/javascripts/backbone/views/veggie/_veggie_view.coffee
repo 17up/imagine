@@ -1,11 +1,11 @@
 class window.Veggie.View extends Marionette.ItemView
 	initialize: (self = this) ->
-		Utils.loading $("nav .brand")	
+		Utils.loading $("nav .brand")
 		m = @model || @collection
 		m.fetch
 			success: ->
 				$("article").append(self.render().el)
-				Utils.loaded $("nav .brand")			
+				Utils.loaded $("nav .brand")
 				self.extra()
 				self.active()
 	close: ->

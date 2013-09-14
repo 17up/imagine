@@ -9,8 +9,8 @@ class window.Utils
 		$item.stop(true).css "opacity",1
 		$item.removeClass 'disable_event'
 	# single uploader
-	@uploader: ($ele,callback) ->				
-		$uploader = $("footer #uploader").find("." + $ele.data().uploader)		
+	@uploader: ($ele,callback) ->
+		$uploader = $("footer #uploader").find("." + $ele.data().uploader)
 		$file = $("input[type='file']",$uploader)
 		$form = $file.closest('form')
 		$img = $("img",$ele)
@@ -29,17 +29,16 @@ class window.Utils
 			$form.submit()
 		$file.trigger "click"
 		$form
-	
+
 	@tag_input: ($form) ->
 		$("input.tags",$form).each (i,e) ->
 			tip = $(@).data().tip || "添加标签"
 			delimiter = $(@).data().delimiter || ","
-			$(@).tagsInput
-				'height':'auto'
-				'width':'auto'
-				'defaultText': tip			
-				'placeholderColor': '#888'
-				'delimiter': delimiter
+			$(@).selectize
+				delimiter: delimiter
+				persist: false
+				create: (input) ->
+					value: input,text: input
 	# Utils.getSelection('Italic')
 	# Utils.getSelection('bold')
 	@getSelection: (command = 'bold') ->
@@ -63,10 +62,10 @@ class window.Utils
 		if type isnt ''
 			$alert.addClass "alert-#{type}"
 		$alert.slideDown()
-		fuc = -> 
+		fuc = ->
 			$alert.slideUp ->
 				$(@).remove()
-		setTimeout fuc,5000		
+		setTimeout fuc,5000
 		false
 	@show_word_tips: (msg,$container) ->
 		$container = $container || $("#flash_message")
@@ -84,14 +83,14 @@ class window.Utils
 		en_count = (_.compact(string.split(" "))).length
 		en_count + cn_count
 	@ms_flash: ($alert,duration) ->
-		$alert.css 		
+		$alert.css
 			"-webkit-transform": "translateY(300px)"
 			"-webkit-transition": "0.8s"
 		fade_in = ->
-			$alert.css 
+			$alert.css
 				"-webkit-transform":"translateY(0px)"
 		fade_out  = ->
-			$alert.css 
+			$alert.css
 				"-webkit-transform":"scale(1.5)"
 				"opacity": "0.0"
 			$alert.on "webkitTransitionEnd",->
@@ -105,9 +104,9 @@ class window.Utils
 		$container.prepend JST['widget/message'](avatar:avatar,msg:msg)
 		$alert = $(".ms:first-child",$container)
 		if style isnt ''
-			$alert.addClass "alert-#{style}"		
-		if wc > 6 
-			duration = wc*1100 
+			$alert.addClass "alert-#{style}"
+		if wc > 6
+			duration = wc*1100
 		else
 			duration = 7000
 		Utils.ms_flash $alert,duration
@@ -127,7 +126,7 @@ class window.Utils
 		$alert.fadeIn()
 		$(".btn",$confirm).click ->
 			if $(@).data().confirm is true
-				yesCallback()	
-			$confirm.remove()	
+				yesCallback()
+			$confirm.remove()
 			$("#container").removeClass 'mask'
 		false
