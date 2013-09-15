@@ -11,24 +11,13 @@
 				%a.label{:href => @member_path}
 					%span.icon-user
 					= @uid
-			.c_at
-				%span.label
-					%span.icon-time
-					入会日期
-				%span.label.label-success.round
-					= (new Date(@c_at)).format("yyyy-MM-dd hh:mm:ss")
 			.role
 				%span.label
 					%span.icon-trophy
-					学员状态
+					累计学分
 				%span.label.label-success.round
-					普通学员
-				- if @role is 'a'
-					%span.label.label-red.round
-						管理员
-				- else if @role is 't'
-					%span.label.label-red.round
-						教师
+					= @score
+
 			.grades
 				%span.label
 					%span.icon-book

@@ -28,6 +28,8 @@ class UWord
 		dir = IMAGE_PATH + "#{_id}"
 		unless File.exist?(dir)
 			`mkdir -p #{dir}`
+			member.gems += 1
+			member.save
 		end
 		h = Image::Convert.new(file,outfile: image_path).draw(word.image_path)
 		self.img_size = {width: IMAGE_WIDTH,height: h}

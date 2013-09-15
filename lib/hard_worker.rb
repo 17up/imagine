@@ -37,21 +37,22 @@ module HardWorker
 		end
 	end
 
-	# Be Removed
 	class UploadOlive < Base
 
-		def perform(content,pic)
+		def perform(content,pic,id)
+			provider = Authorization.find(id)
 			begin
-				p = Authorization.official("weibo")
-				data = Wali::Base.new(p).client.statuses_upload(content,pic)
-				msg = data["error_code"] ? data.to_s : "#{data["id"]} published"
-				self.logger msg
+				case provider.provider
+				when "weibo"
+					Wali::Base.new(provider).client.statuses_upload(content,pic)
+				when "twitter"
+					Wali::Base.new(provider).client.update_with_media(content,File.open(pic))
+				when "qq_connect"
+					Wali::Base.new(provider).client.add_pic_t(content,File.open(pic))
+				end
 			rescue => ex
 				self.logger("#{content} [#{pic}] fail msg: #{ex.to_s}")
 			end
-			#twitter
-			veggie = Authorization.official("twitter")
-			Wali::Base.new(veggie).client.update_with_media(content,File.open(pic))
 		end
 	end
 

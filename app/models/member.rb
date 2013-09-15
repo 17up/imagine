@@ -27,7 +27,10 @@ class Member
 
 	field :role
 	field :uid
+	# 学币
 	field :gems, type: Integer, default: 0
+	# 学分
+	field :score, type: Integer, default: 0
 	field :friend_ids, type: Array, default: []
 	# 收藏
 	field :quote_ids, type: Array, default: []
@@ -208,7 +211,7 @@ class Member
 			words: u_words.length,
 			friends: friend_ids.length
 		}
-		super(only: [:c_at,:role,:uid]).merge(ext)
+		super(only: [:role,:uid,:score]).merge(ext)
 	end
 
 	def as_profile

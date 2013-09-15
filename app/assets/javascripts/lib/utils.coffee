@@ -32,9 +32,9 @@ class window.Utils
 
 	@tag_input: ($form) ->
 		$("input.tags",$form).each (i,e) ->
-			tip = $(@).data().tip || "添加标签"
 			delimiter = $(@).data().delimiter || ","
 			$(@).selectize
+				plugins: ['remove_button']
 				delimiter: delimiter
 				persist: false
 				create: (input) ->

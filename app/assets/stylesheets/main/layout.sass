@@ -20,7 +20,7 @@ body
 		@include text-shadow-white($nav_color_green,asset-url('img/noise.png'))
 	.gem,.current_bar,.label-success
 		background-color: $green
-	.alert-success,div.tagsinput span.tag
+	.alert-success,.selectize-control.multi .selectize-input > div
 		background-color: #dff0d8
 		border: 1px solid #d6e9c6
 		color: $green
@@ -31,7 +31,7 @@ body
 			border-color: $hover-green
 	.title,.content,textarea,input[type='text'],.lyrics,.tip
 		color: $green
-	#{$all-text-inputs-focus},textarea:focus
+	#{$all-text-inputs-focus},textarea:focus,.selectize-input.focus
 		border-color: $green
 	span.invite
 		color: $green
@@ -42,7 +42,7 @@ body.wis
 		@include text-shadow-white($nav_color_wis,asset-url('img/noise.png'))
 	.gem,.current_bar,.label-success
 		background-color: $wisteria
-	.alert-success,div.tagsinput span.tag
+	.alert-success,.selectize-control.multi .selectize-input > div
 		background-color: #e9e1f0
 		border: 1px solid #e1d6e9
 		color: $wisteria
@@ -53,11 +53,12 @@ body.wis
 			border-color: $hover-wisteria
 	.title,.content,textarea,input[type='text'],.lyrics,.tip
 		color: $wisteria
-	#{$all-text-inputs-focus},textarea:focus
+	#{$all-text-inputs-focus},textarea:focus,.selectize-input.focus
 		border-color: $wisteria
 	span.invite
 		color: $wisteria
 		border: 2px dotted $wisteria
+
 body,body.wis
 	.btn.pink
 		color: $pink
