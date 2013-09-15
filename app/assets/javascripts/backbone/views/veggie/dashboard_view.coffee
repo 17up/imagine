@@ -25,6 +25,8 @@ class window.Veggie.DashboardView extends Veggie.View
 		super()
 		if @current_course and @current_course.get("imagine")
 			@init_imagine()
+		if @current_game
+			@init_imagine()
 	close: ->
 		super()
 		@deinit_imagine()
@@ -34,9 +36,9 @@ class window.Veggie.DashboardView extends Veggie.View
 		$("#imagine").hide()
 		$("#icontrol").removeClass 'active'
 		@$el.css "height":"auto"
-		
+
 	init_imagine: ->
-		unless $("#imagine").jmpress("initialized")		
+		unless $("#imagine").jmpress("initialized")
 			$("#imagine").jmpress
 				stepSelector: ".step"
 				transitionDuration: 0
@@ -61,7 +63,7 @@ class window.Veggie.DashboardView extends Veggie.View
 			$("#imagine").show()
 			$("#icontrol").show().addClass 'active'
 			@$el.css "height":"100%"
-			
+
 	keyup: (event) ->
 		switch event.keyCode
 			when 39
@@ -83,8 +85,8 @@ class window.Veggie.DashboardView extends Veggie.View
 			guides = @model.get("guides")
 			Guide.fetch(guides)
 			for g,i in guides["member"]
-				@addOneGuide(Guide.generate(g,i+1))	
+				@addOneGuide(Guide.generate(g,i+1))
 			$(document).on('keyup', @keyup)
 		else
-			@render_member_view()		
+			@render_member_view()
 		super()

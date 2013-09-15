@@ -44,7 +44,7 @@ class window.Veggie.GameView extends Marionette.ItemView
 		@collection.reset()
 		$("#imagine").empty()
 		$("#assets").empty()
-
+		window.route.active_view.current_game = null
 	addOneMission: (mission,opts = {}) ->
 		options = _.extend
 			model: mission
@@ -56,3 +56,4 @@ class window.Veggie.GameView extends Marionette.ItemView
 	imagine_missions: ->
 		window.route.active_view.init_imagine()
 		$(".banner",@$el).addClass 'opacity'
+		window.route.active_view.current_game = @model

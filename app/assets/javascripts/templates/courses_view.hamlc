@@ -5,4 +5,4 @@
 		待审合课程
 	%option(value="draft")
 		草稿
-#courses
+#courses_container

@@ -8,7 +8,7 @@ class window.Olive.CoursesView extends Olive.View
 	addOne: (course) ->
 		view = new Olive.CourseView
 			model: course
-		$("#courses",@$el).append(view.render().el)
+		$("#courses_container",@$el).append(view.render().el)
 	render: ->
 		template = @template()
 		@$el.html(template)
@@ -18,7 +18,7 @@ class window.Olive.CoursesView extends Olive.View
 			@collection.fetch
 				url: @collection.url + "?status=" + status
 				success: (data) =>
-					$("#courses",@$el).html("")
+					$("#courses_container",@$el).html("")
 					@addCourses()
 	addCourses: ->
 		for c in @collection.models
