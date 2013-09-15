@@ -58,7 +58,7 @@ class WordsController < ApplicationController
 			@uw.save
 			content = I18n.t("word.upload",word: @uw.title)
 			current_member.authorizations.each do |p|
-				HardWorker::UploadOlive.perform_async(content,@uw.image,p._id.to_s)
+				HardWorker::UploadOlive.perform_async(content,@uw.image_path,p._id.to_s)
 			end
 			img = @uw.image_url + "?#{Time.now.to_i}"
 			render_json 0,t("flash.success.upload.uword"),img
