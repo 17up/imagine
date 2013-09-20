@@ -12,8 +12,8 @@ class UWord
 
 	IMAGE_URL = "/system/images/u_word/"
 	IMAGE_PATH = "#{Rails.root}/public" + IMAGE_URL
-	IMAGE_SIZE_LIMIT = 2*1000*1000 #2m
-	IMAGE_WIDTH = 280
+	IMAGE_SIZE_LIMIT = 3*1000*1000 #2m
+	IMAGE_WIDTH = 640
 
 	AUDIO_URL = "/system/audios/u_word/"
 	AUDIO_PATH = "#{Rails.root}/public" + AUDIO_URL

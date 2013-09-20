@@ -12,7 +12,7 @@ class MembersController < ApplicationController
 			quote: Eva::Quote.new(current_member).single,
 			courses: Eva::Course.new(current_member).list,
 			song: Eva::Song.new(current_member).single,
-			game: Eva::Game.new(current_member).single
+			game: Eva::Game.new(current_member).list
 		}
 
 		unless current_member.is_member?

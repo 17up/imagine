@@ -4,11 +4,34 @@ module APIHelpers
 		{ status: status, msg: msg, data: data }
 	end
 
-	def current_member
-    @current_member ||= Member.authorize!(env)
-  end
+	def warden
+		env['warden']
+	end
 
-  def authenticate!
-    error!('401 Unauthorized', 401) unless current_member
-  end
+	def auth_token
+		env['HTTP_AUTH_TOKEN']
+	end
+
+	def authenticated?
+		if warden.authenticated?
+			return true
+		elsif auth_token and Member.authorize(auth_token)
+	            return true
+		else
+			error!({"error" => "Unauth 401"}, 401)
+		end
+	end
+
+	def current_member
+		warden.user ||  Member.authorize(auth_token)
+	end
+
+	def find_or_create_uw(id)
+		@word = Word.find(id)
+		unless @uw = current_member.has_u_word(@word)
+			@uw = current_member.u_words.new(word_id: @word._id)
+		end
+		@uw
+	end
 end
+

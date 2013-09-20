@@ -8,16 +8,16 @@ class Iquote < Grape::API
 
 	resource :quotes do
 		desc "get quotes"
-		get :index do 
+		get :index do
 			render_json 0, "ok", Eva::Quote.new(nil).collection
 		end
 
 		desc "like one quote"
 		params do
-    	requires :_id, type: Integer, desc: "quote ID"
-    	requires :atoken, type: String, desc: "authentication_token"
-  	end
-		post :like do 
+			requires :_id, type: Integer, desc: "quote ID"
+			requires :auth_token, type: String, desc: "authentication_token"
+		end
+		post :like do
 			Quote.find(params[:_id]).liked_by(current_member)
 			render_json 0, "ok"
 		end

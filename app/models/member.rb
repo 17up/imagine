@@ -6,6 +6,7 @@ class Member
 		:recoverable, :trackable, :validatable,
 		:omniauthable, omniauth_providers: [:weibo,:twitter,:github,:tumblr,:instagram,:youtube,:qq_connect]
 
+	before_save :ensure_authentication_token
 	## Database authenticatable
 	field :email,              type: String, default: ""
 	field :encrypted_password, type: String, default: ""
@@ -66,6 +67,12 @@ class Member
 	scope :x, -> {where(role: nil)}
 	ROLE.each do |r|
 		scope r.to_sym, -> {where(role: r)}
+	end
+
+	class << self
+		def authorize(token)
+			self.where(authentication_token: token).first
+		end
 	end
 
 	def admin?

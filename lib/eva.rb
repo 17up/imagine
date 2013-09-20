@@ -44,7 +44,7 @@ module Eva
 	end
 
 	class Game < Base
-		def single
+		def list
 			missions = @member.checked_courses.collect{|x| x.words}.flatten.uniq
 			data = missions.map do |w|
 				w.as_json.merge!(u_word_image: @member.has_word_image(w))
