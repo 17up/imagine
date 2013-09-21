@@ -9,7 +9,7 @@ module APIHelpers
 	end
 
 	def auth_token
-		env['HTTP_AUTH_TOKEN']
+		env['HTTP_AUTH_TOKEN'] || params[:auth_token]
 	end
 
 	def authenticated?

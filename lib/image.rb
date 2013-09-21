@@ -69,7 +69,7 @@ module Image
 		def self.draw_word(opts = {})
 			opts = {
 				:text => $config[:name],
-				:font_size => 36,
+				:font_size => 72,
 				:type => 1,
 				:word_path => "public/w.png",
 				:font => "public/font/Lobster/Lobster.ttf"
@@ -81,10 +81,10 @@ module Image
                  -shadow  xc:transparent -geometry +5+5 \
                  #{opts[:word_path]}`
 			when 2
-				`convert -size 280x50 xc:transparent -font '#{opts[:font]}' -pointsize #{opts[:font_size]} \
-                   -fill black        -annotate +12+32 '#{opts[:text]}' \
-                   -fill white       -annotate +13+33 '#{opts[:text]}' \
-                   -fill transparent  -annotate +12.5+32.5 '#{opts[:text]}' \
+				`convert -size 640x100 xc:transparent -font '#{opts[:font]}' -pointsize #{opts[:font_size]} \
+                   -fill black        -annotate +24+64 '#{opts[:text]}' \
+                   -fill white       -annotate +26+66 '#{opts[:text]}' \
+                   -fill transparent  -annotate +25+65 '#{opts[:text]}' \
                   -trim #{opts[:word_path]}`
 
 			end
@@ -114,7 +114,7 @@ module Image
 			# 先缩小尺寸
 			@img.resize @opts[:size].to_s
 			# 再裁剪
-			@img.crop "280x400+0+0"
+			@img.crop "#{UWord::IMAGE_WIDTH}x#{UWord::IMAGE_HEIGHT}+0+0"
 			if opt[:original]
 				@img.write opt[:original]
 			end

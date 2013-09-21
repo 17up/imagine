@@ -14,7 +14,7 @@ Veggie::Application.routes.draw do
 		:sessions => :sessions
 	}
 
-	get "home/qq_connect"
+	get "/mobile/index"
 	# olive
 	get "o", :to => "olive#index", :as => :olive
 	resources :olive do

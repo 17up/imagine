@@ -3,7 +3,8 @@ class UWord
 	include Mongoid::Timestamps::Short
 
 	field :img_size, type: Hash
-	field :img_info
+	field :desc
+	field :geo, type: Array
 
 	belongs_to :member
 	belongs_to :word
@@ -14,6 +15,8 @@ class UWord
 	IMAGE_PATH = "#{Rails.root}/public" + IMAGE_URL
 	IMAGE_SIZE_LIMIT = 3*1000*1000 #2m
 	IMAGE_WIDTH = 640
+	# iphone 5
+	IMAGE_HEIGHT = 857
 
 	AUDIO_URL = "/system/audios/u_word/"
 	AUDIO_PATH = "#{Rails.root}/public" + AUDIO_URL

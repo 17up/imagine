@@ -24,7 +24,7 @@ class Member
 
 	## Token authenticatable
 	field :authentication_token, type: String
-	#field :ios_device_token
+	field :ios_device_token
 
 	field :role
 	field :uid
