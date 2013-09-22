@@ -146,7 +146,7 @@ class Member
 
 	def has_word_image(wid)
 		a = has_u_word(wid)
-		a&&a.image
+		a&&a.origin_image_url
 	end
 
 	def name

@@ -38,11 +38,7 @@ class Icard < Grape::API
 				# current_member.authorizations.each do |p|
 				# 	HardWorker::UploadOlive.perform_async(content,@uw.image_path,p._id.to_s)
 				# end
-				data = {
-					url: @uw.image_url + "?#{Time.now.to_i}",
-					_id: params[:_id]
-				}
-				render_json 0,"ok",data
+				render_json 0,"ok"
 			else
 				render_json -1,"error"
 			end

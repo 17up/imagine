@@ -34,7 +34,7 @@ class UWord
 			member.gems += 1
 			member.save
 		end
-		h = Image::Convert.new(file,outfile: image_path).draw(word.image_path)
+		h = Image::Convert.new(file,outfile: image_path).draw(word.image_path,original: origin_image_path)
 		self.img_size = {width: IMAGE_WIDTH,height: h}
 		self
 	end
@@ -45,6 +45,14 @@ class UWord
 
 	def image_url
 		IMAGE_URL + "#{_id}/#{$config[:name]}.jpg"
+	end
+
+	def origin_image_path
+		IMAGE_PATH + "#{_id}/#{$config[:name]}_origin.jpg"
+	end
+
+	def origin_image_url
+		IMAGE_URL + "#{_id}/#{$config[:name]}_origin.jpg"
 	end
 
 	def audio_path
