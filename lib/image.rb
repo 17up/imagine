@@ -56,7 +56,7 @@ module Image
 		def add_watermark(img)
 			unless File.exist?("public/water_mark.png")
 				opts = {
-					:font => "public/font/Tallys/Tallys.ttf",
+					:font => "public/font/Lobster/Lobster.ttf",
 					:word_path => "public/water_mark.png"
 				}
 				Convert.draw_word(opts)
