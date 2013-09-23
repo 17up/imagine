@@ -25,7 +25,7 @@ class Icard < Grape::API
 			render_json 0, "ok", data
 		end
 
-		desc "make one word card"
+		desc "make one word card no share"
 		post :create do
 			@uw = find_or_create_uw(params[:_id])
 			file = params[:image].tempfile.path
@@ -34,10 +34,6 @@ class Icard < Grape::API
 				@uw = @uw.make_image(file)
 				@uw.desc = params[:desc]
 				@uw.save
-				# content = I18n.t("word.upload",word: @uw.title)
-				# current_member.authorizations.each do |p|
-				# 	HardWorker::UploadOlive.perform_async(content,@uw.image_path,p._id.to_s)
-				# end
 				render_json 0,"ok"
 			else
 				render_json -1,"error"

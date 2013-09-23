@@ -44,8 +44,7 @@ class Word
 
 	def as_json
 		ext = {
-			_id: id.to_s,
-			word_image: image_url
+			_id: id.to_s
 		}
 		super(only: [:title,:content,:synset,:sentence]).merge(ext)
 	end
