@@ -144,9 +144,13 @@ class Member
 		a&&a.audio
 	end
 
-	def has_word_image(wid)
+	def has_word_image(wid,opts = {})
 		a = has_u_word(wid)
-		a&&a.origin_image_url
+		if opts[:origin]
+			a&&a.origin_image_url
+		else
+			a&&a.image
+		end
 	end
 
 	def name

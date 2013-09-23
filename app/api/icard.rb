@@ -21,7 +21,7 @@ class Icard < Grape::API
 	resource :cards do
 		desc "get u_words"
 		get "/" do
-			data = Eva::Game.new(current_member).list[:data]
+			data = Eva::Game.new(current_member).list(:origin => true)[:data]
 			render_json 0, "ok", data
 		end
 
