@@ -33,14 +33,14 @@ class window.Veggie.TeachCourseView extends Marionette.ItemView
 			Utils.loading @$el
 			@model.save serializedData,success: (m,resp) =>
 				data = _.extend resp.data, next: true
-				@model.set data			
+				@model.set data
 				Utils.loaded @$el
 		else
 			Utils.flash "请确认课程标题及内容已填写","error"
 	select_words_view: ->
 		@$el.siblings().hide()
 		Veggie.hide_nav()
-		@model.set 
+		@model.set
 			editable: true
 			next: true
 			fetch_word: false
@@ -55,12 +55,12 @@ class window.Veggie.TeachCourseView extends Marionette.ItemView
 		self = this
 		@$el.siblings().hide()
 		Veggie.hide_nav()
-		@model.set 
+		@model.set
 			editable: true
 			next: false
 		$form = $("form",@$el)
 		Utils.tag_input($form)
-		$('textarea',$form).css('overflow', 'hidden').autogrow()	
+		$('textarea',$form).css('overflow', 'hidden').autogrow()
 		window.route.active_view.current_course = @model
 	publish: (e) ->
 		if $(@model.get("raw_content")).find("b")
@@ -72,7 +72,7 @@ class window.Veggie.TeachCourseView extends Marionette.ItemView
 			Utils.flash "你还没有点选任何词汇呢，双击文本区域里的词汇试试吧","error"
 	select_words: ->
 		@deinit_imagine()
-		@model.set 
+		@model.set
 			editable: true
 			next: true
 			fetch_word: false
@@ -81,7 +81,7 @@ class window.Veggie.TeachCourseView extends Marionette.ItemView
 		options = _.extend
 			model: word
 			opts
-		view = new Veggie.TeachWordView options			 
+		view = new Veggie.TeachWordView options
 		new_step = view.render().el
 		$("#t_words").append(new_step)
 	addEnd: (words_cnt) ->
@@ -101,18 +101,18 @@ class window.Veggie.TeachCourseView extends Marionette.ItemView
 		titles = _.map words,(b) ->
 			$(b).text()
 		_.uniq(titles)
-	fetch_words: (e) ->		
+	fetch_words: (e) ->
 		words = @collect_words()
-		if words.length > 0				
+		if words.length > 0
 			@addHome(words.length)
 			for title,i in words
-				word = new Word 
+				word = new Word
 					title: title
 					num: i + 1
 				@addOneWord word
 			@addEnd(words.length)
 			content = $.trim @$el.find(".content").html()
-			@model.set 
+			@model.set
 				raw_content: content
 				editable: true
 				next: true
