@@ -28,7 +28,7 @@ module APIHelpers
 
 	# device_member
 	def authenticated_device?
-		if params[:device_token].present?
+		if params[:uuid].present?
 			return true
 		else
 			error!({"error" => "Unauth 401"}, 401)
@@ -36,7 +36,7 @@ module APIHelpers
 	end
 
 	def current_device
-		DeviceMember.auth_device(params[:device_token])
+		DeviceMember.auth_device(params[:uuid])
 	end
 
 	def find_or_create_uw(id)

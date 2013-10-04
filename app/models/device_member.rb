@@ -2,8 +2,9 @@ class DeviceMember
 	include Mongoid::Document
 	include Mongoid::Timestamps::Short
 
+	field :uuid, type: String
 	field :token, type: String
-	field :banner, type: String
+	field :platform, type: String
 	field :name, type: String
 	field :app, type: String
 
@@ -13,13 +14,12 @@ class DeviceMember
 	has_many :u_words, dependent: :destroy
 
 	class << self
-		def auth_device(device_token)
-			self.where(token: device_token).first
+		def auth_device(uuid)
+			self.where(uuid: uuid).first
 		end
 
-		def generate(device_token,app,opts = {})
+		def generate(app,opts = {})
 			defaults = {
-				token: device_token,
 				app: app
 			}
 			member = self.create(defaults.merge(opts))
@@ -43,6 +43,13 @@ class DeviceMember
 		else
 			a&&a.image
 		end
+	end
+
+	def as_json
+		{
+			_id: id.to_s,
+			gems: gems
+		}
 	end
 
 end

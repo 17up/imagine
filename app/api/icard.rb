@@ -12,9 +12,9 @@ class Icard < Grape::API
 
 	resource :members do
 		desc "register or login"
-		post "/" do
+		get "/" do
 			unless current_device
-				current_device = DeviceMember.generate(params[:device_token],"icard")
+				current_device = DeviceMember.generate("icard",params.slice(:uuid,:name,:platform))
 			end
 			render_json 0,"ok",current_device.as_json
 		end
