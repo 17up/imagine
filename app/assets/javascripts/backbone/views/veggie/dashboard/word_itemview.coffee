@@ -5,8 +5,8 @@ class window.Veggie.WordView extends Marionette.ItemView
 		@model.get('title')
 	attributes: ->
 		"data-x": @model.get('num')*2000 + @model.get("sub")*1000
-		"data-y": -@model.get('num')*1000 
-		"data-z": -@model.get('num')*1500	
+		"data-y": -@model.get('num')*1000
+		"data-z": -@model.get('num')*1500
 		"data-scale": "1"
 	template: JST['item/word']
 	events: ->
@@ -23,7 +23,7 @@ class window.Veggie.WordView extends Marionette.ItemView
 		#@listenTo(@model, 'change', @render)
 		@listenTo(@model, 'destroy', @remove)
 		if t = @model.get("title")
-			@my_audio = new Audio()			
+			@my_audio = new Audio()
 			id = @model.cid
 			@sound = soundManager.createSound
 				id: id
@@ -52,7 +52,7 @@ class window.Veggie.WordView extends Marionette.ItemView
 		$("#progress .current_bar").css "width": "#{percent}%"
 		$ele = $(e.currentTarget)
 		if @sound
-			@sound.play() 	
+			@sound.play()
 		if @model.get('num') is 0
 			Veggie.GuideView.addOne Guide.imagine("ihome")
 		else if @model.get("num") is max
@@ -66,7 +66,7 @@ class window.Veggie.WordView extends Marionette.ItemView
 		$btn = $(e.currentTarget)
 		if navigator.webkitGetUserMedia or navigator.getUserMedia
 			window.recorder = window.recorder || new AudioRecorder()
-			window.recorder.startRecording ->			
+			window.recorder.startRecording ->
 				$btn.addClass 'ing'
 				setTimeout( ->
 					window.recorder.stopRecording ->
@@ -76,11 +76,11 @@ class window.Veggie.WordView extends Marionette.ItemView
 		else
 			Utils.flash "您的浏览器不支持语音输入，请尝试chrome","error"
 	audio_play: (e) ->
-		if @my_audio.src isnt ''			
-			@my_audio.play() 
+		if @my_audio.src isnt ''
+			@my_audio.play()
 		else if src = @model.get("my_audio")
 			@my_audio.src = src
-			@my_audio.play() 
+			@my_audio.play()
 		else
 			Utils.flash("你还没有录音呢，请点击我左边那家伙先录个音吧！","error")
-		
+

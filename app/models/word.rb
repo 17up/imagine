@@ -29,6 +29,10 @@ class Word
 		IMAGE_URL + self.title.parameterize.underscore + "/w.png"
 	end
 
+	def image
+		u_words.any? && u_words.last.image
+	end
+
 	def draw
 		dir = IMAGE_PATH + self.title.parameterize.underscore
 		unless File.exist?(dir)

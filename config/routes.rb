@@ -68,13 +68,13 @@ Veggie::Application.routes.draw do
 	resources :invites
 
 	# 如果是移动设备，则以移动版本渲染
-	mobile_devise = lambda { |request|
-		agent = request.user_agent.downcase
-		agent.include?("iphone") or agent.include?("android")
-	}
-	constraints mobile_devise do
-		get "/", :to => 'mobile#index'
-	end
+	# mobile_devise = lambda { |request|
+	# 	agent = request.user_agent.downcase
+	# 	agent.include?("iphone") or agent.include?("android")
+	# }
+	# constraints mobile_devise do
+	# 	get "/", :to => 'mobile#index'
+	# end
 
 	authenticated :member do
 		get "/", :to => "members#index"

@@ -47,7 +47,7 @@ module Eva
 		def list(opts = {})
 			missions = @member.checked_courses.collect{|x| x.words}.flatten.uniq
 			data = missions.map do |w|
-				w.as_json.merge!(u_word_image: @member.has_word_image(w,opts))
+				w.as_json.merge!(image: w.image)
 			end
 			{
 				num: missions.length,
@@ -55,6 +55,12 @@ module Eva
 			}
 		end
 
+	end
+
+	class Icard < Base
+		def list
+			Word.limit(30).as_json
+		end
 	end
 
 	class Media < Base

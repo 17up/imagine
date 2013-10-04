@@ -11,16 +11,10 @@
 	- if @sub is 1
 		.word_card.medias
 			.image
-				- if @t_word_image
-					%img{:src => @t_word_image }
+				- if @image
+					%img{:src => @image }
 				- else
 					%span.empty
-			.audio
-				%span.record(title="录制你自己的发音")
-					%i.icon-circle
-					%i.icon-spinner.icon-spin
-				%span.play
-					%i.icon-play
 	- if @sub is 2
 		.word_card.synsets
 			- if @sentence.length > 0 or @synset.length > 0
@@ -29,7 +23,7 @@
 						= i
 				- for s in @sentence
 					.sentence.form.alert-success
-						!= s 
+						!= s
 			- else
 				～还未收录例句及同义词信息呢～
 - if @tip

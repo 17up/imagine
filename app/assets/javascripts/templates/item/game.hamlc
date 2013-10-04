@@ -1,9 +1,8 @@
 .form.banner.alert-success
 	.title.ellipsis
-		Magical Card Game
+		iCard Gallery
 	.desc.ellipsis.dancer
 		= @num
-		missions
 	.action
 		%span.enter.w_btn
 			%i.icon-gamepad

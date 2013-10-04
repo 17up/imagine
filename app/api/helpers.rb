@@ -26,10 +26,23 @@ module APIHelpers
 		warden.user ||  Member.authorize(auth_token)
 	end
 
+	# device_member
+	def authenticated_device?
+		if params[:device_token].present?
+			return true
+		else
+			error!({"error" => "Unauth 401"}, 401)
+		end
+	end
+
+	def current_device
+		DeviceMember.auth_device(params[:device_token])
+	end
+
 	def find_or_create_uw(id)
 		@word = Word.find(id)
-		unless @uw = current_member.has_u_word(@word)
-			@uw = current_member.u_words.new(word_id: @word._id)
+		unless @uw = current_device.has_u_word(@word)
+			@uw = current_device.u_words.new(word_id: @word._id)
 		end
 		@uw
 	end

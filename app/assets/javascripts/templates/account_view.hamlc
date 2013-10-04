@@ -24,12 +24,6 @@
 					已修课程
 				%span.label.label-success.round
 					= @grades
-			.uwords
-				%span.label
-					%span.icon-star
-					已知词汇
-				%span.label.label-success.round
-					= @words
 			.friends
 				%span.label
 					%span.icon-group

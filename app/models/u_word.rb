@@ -6,10 +6,10 @@ class UWord
 	field :desc
 	field :geo, type: Array
 
-	belongs_to :member
+	belongs_to :device_member
 	belongs_to :word
 
-	validates :member_id, presence: true, uniqueness: {scope: :word_id}
+	validates :device_member_id, presence: true, uniqueness: {scope: :word_id}
 
 	IMAGE_URL = "/system/images/u_word/"
 	IMAGE_PATH = "#{Rails.root}/public" + IMAGE_URL
@@ -31,8 +31,8 @@ class UWord
 		dir = IMAGE_PATH + "#{_id}"
 		unless File.exist?(dir)
 			`mkdir -p #{dir}`
-			member.gems += 1
-			member.save
+			device_member.gems += 1
+			device_member.save
 		end
 		h = Image::Convert.new(file,outfile: image_path).draw(word.image_path,original: origin_image_path)
 		self.img_size = {width: IMAGE_WIDTH,height: h}

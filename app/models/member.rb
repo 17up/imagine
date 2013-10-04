@@ -24,7 +24,6 @@ class Member
 
 	## Token authenticatable
 	field :authentication_token, type: String
-	field :ios_device_token
 
 	field :role
 	field :uid
@@ -39,7 +38,6 @@ class Member
 
 	has_many :authorizations, dependent: :destroy
 	has_many :courses
-	has_many :u_words, dependent: :destroy
 	has_many :invites, dependent: :destroy
 
 	embeds_many :course_grades
@@ -72,6 +70,21 @@ class Member
 	class << self
 		def authorize(token)
 			self.where(authentication_token: token).first
+		end
+
+		def generate(prefix = Utils.rand_passwd(7,number: true))
+			email = prefix + "@" + $config[:domain]
+			passwd = Utils.rand_passwd(8)
+			user = Member.new(
+				email: email,
+				password: passwd,
+				password_confirmation: passwd
+			)
+			if user.save!
+				user
+			else
+				self.generate(prefix + "v")
+			end
 		end
 	end
 
@@ -134,25 +147,6 @@ class Member
 		AUDIO_URL + "#{_id}/#{ts}.ogg"
 	end
 
-	# uword
-	def has_u_word(wid)
-		UWord.where(member_id: self.id,word_id: wid).first
-	end
-
-	def has_word_audio(wid)
-		a = has_u_word(wid)
-		a&&a.audio
-	end
-
-	def has_word_image(wid,opts = {})
-		a = has_u_word(wid)
-		if opts[:origin]
-			a&&a.origin_image_url
-		else
-			a&&a.image
-		end
-	end
-
 	def name
 		p = self.authorizations.first
 		p ? p.user_name : $config[:author]
@@ -197,20 +191,6 @@ class Member
 		)
 	end
 
-	def self.generate(prefix = Utils.rand_passwd(7,number: true))
-		email = prefix + "@" + $config[:domain]
-		passwd = Utils.rand_passwd(8)
-		user = Member.new(
-			email: email,
-			password: passwd,
-		password_confirmation: passwd)
-		if user.save!
-			user
-		else
-			self.generate(prefix + "v")
-		end
-	end
-
 	def clear_data
 		`rm -rf #{AVATAR_PATH + _id}`
 	end
@@ -219,7 +199,6 @@ class Member
 		ext = {
 			member_path: member_path,
 			grades: course_grades.length,
-			words: u_words.length,
 			friends: friend_ids.length
 		}
 		super(only: [:role,:uid,:score]).merge(ext)
