@@ -27,6 +27,13 @@ class Icard < Grape::API
 			render_json 0, "ok", data
 		end
 
+		desc "get u_word collection by same word id"
+		get :collection do
+			word = Word.find(params[:id])
+			data = word.u_words.map{|w| w.image}
+			render_json 0,"ok", data
+		end
+
 		desc "make one word card no share"
 		post :create do
 			@uw = find_or_create_uw(params[:_id])
@@ -36,7 +43,7 @@ class Icard < Grape::API
 				@uw = @uw.make_image(file)
 				@uw.desc = params[:desc]
 				@uw.save
-				render_json 0,"ok"
+				render_json 0,"ok",@uw.image
 			else
 				render_json -1,"error"
 			end
