@@ -3,8 +3,10 @@ class UWord
 	include Mongoid::Timestamps::Short
 
 	field :img_size, type: Hash
-	field :desc
 	field :geo, type: Array
+	field :altitude, type: Float
+	field :cap_at, type: DateTime
+	field :good, type: Integer
 
 	belongs_to :device_member
 	belongs_to :word

@@ -41,7 +41,9 @@ class Icard < Grape::API
 			type = params[:image].content_type || params[:image].type
 			if @uw&&@uw.validate_upload_image(file,type)
 				@uw = @uw.make_image(file)
-				@uw.desc = params[:desc]
+				@uw.geo = [params[:lat],params[:lng]]
+				@uw.altitude = params[:altitude].to_f
+				@uw.cap_at = Time.parse params[:cap_at]
 				@uw.save
 				render_json 0,"ok",@uw.image
 			else
