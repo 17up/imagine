@@ -12,5 +12,5 @@ $config[:email] = $config[:author] + ".#{$config[:domain]}@gmail.com"
 $config[:host] = "http://#{$config[:domain]}"
 $config[:mobile_host] = "http://m.#{$config[:domain]}"
 $config[:love_host] = "http://love.#{$config[:domain]}"
-$config[:blog_host] = "http://blog.#{$config[:domain]}"
+$config[:blog_host] = "http://veggie89.tumblr.com/"
 

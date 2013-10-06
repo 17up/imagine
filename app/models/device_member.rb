@@ -52,4 +52,13 @@ class DeviceMember
 		}
 	end
 
+	rails_admin do
+		field :platform
+		field :name
+		field :app
+		field :uuid
+		field :gems
+		field :c_at
+	end
+
 end

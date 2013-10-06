@@ -82,4 +82,20 @@ class UWord
 		return File.exist?(audio_path)
 	end
 
+	rails_admin do
+		field :img_size do
+			label "Img"
+			pretty_value do
+				bindings[:view].image_tag(bindings[:object].image)
+			end
+			column_width 60
+		end
+		field :geo
+		field :altitude
+		field :cap_at
+		field :good
+		field :device_member
+		field :word
+	end
+
 end
