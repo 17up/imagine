@@ -29,15 +29,26 @@ class UWord
 		word.title
 	end
 
-	def make_image(file)
-		dir = IMAGE_PATH + "#{_id}"
+	#private
+	def init_dir(dir)
 		unless File.exist?(dir)
 			`mkdir -p #{dir}`
 			device_member.gems += 1
 			device_member.save
 		end
+	end
+
+	def make_image(file)
+		init_dir(IMAGE_PATH + _id.to_s)
 		h = Image::Convert.new(file,outfile: image_path).draw(word.image_path,original: origin_image_path)
 		self.img_size = {width: IMAGE_WIDTH,height: h}
+		self
+	end
+
+	def make_audio(file)
+		init_dir(AUDIO_PATH + _id.to_s)
+		# 压缩成 ogg
+		`oggenc -q 4 #{file} -o #{self.audio_path}`
 		self
 	end
 

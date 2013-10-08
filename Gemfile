@@ -57,6 +57,7 @@ gem "google_drive"
 gem "wordnet"
 gem "wordnet-defaultdb"
 gem "scalpel"
+gem 'speech2text'
 
 gem 'haml'
 gem 'rails_autolink'

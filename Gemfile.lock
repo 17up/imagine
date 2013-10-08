@@ -81,6 +81,7 @@ GEM
     connection_pool (1.1.0)
     crack (0.4.1)
       safe_yaml (~> 0.9.0)
+    curb (0.8.5)
     daemons (1.1.9)
     database_cleaner (1.1.1)
     descendants_tracker (0.0.1)
@@ -356,6 +357,9 @@ GEM
     slim (2.0.1)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
+    speech2text (0.3.6)
+      curb
+      json
     sprockets (2.10.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -492,6 +496,7 @@ DEPENDENCIES
   sidekiq
   sinatra
   slim
+  speech2text
   therubyracer
   tumblr_client (>= 0.6.7)
   twitter

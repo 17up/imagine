@@ -1,4 +1,5 @@
 require 'helpers'
+require 'speech'
 
 class Icard < Grape::API
 	prefix 'api'
@@ -54,14 +55,15 @@ class Icard < Grape::API
 		desc "upload audio"
 		post :audio do
 			@uw = find_or_create_uw(params[:_id])
-			file = params[:file]
-			@store_path = UWord::AUDIO_PATH + "#{@uw._id}"
-			unless File.exist?(@store_path)
-				`mkdir -p #{@store_path}`
-			end
-			# 压缩成 ogg
-			`oggenc -q 4 #{file.tempfile.path} -o #{@uw.audio_path}`
-			render_json 0,"ok"
+			# wav file
+			file = params[:file].tempfile.path
+			@uw.make_audio(file)
+			audio = Speech::AudioToText.new(file)
+			resp = audio.to_text.inspect
+			Rails.logger.info resp
+			maybe = resp['captured_json'][0]
+			data = maybe[0] == @uw.title
+			render_json 0,"ok",data
 		end
 	end
 
