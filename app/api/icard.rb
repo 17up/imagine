@@ -61,8 +61,7 @@ class Icard < Grape::API
 			audio = Speech::AudioToText.new(file)
 			resp = audio.to_text.inspect
 			Rails.logger.info resp
-			maybe = resp['captured_json'][0]
-			data = maybe[0] == @uw.title
+			data = resp == @uw.title
 			render_json 0,"ok",data
 		end
 	end
