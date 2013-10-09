@@ -22,7 +22,7 @@ class UWord
 
 	AUDIO_URL = "/system/audios/u_word/"
 	AUDIO_PATH = "#{Rails.root}/public" + AUDIO_URL
-
+	after_destroy :clear_data
 	scope :has_image, -> {where(:img_size.exists => true)}
 
 	def title
@@ -86,6 +86,11 @@ class UWord
 
 	def validate_upload_image(file,type)
 		type.scan(/(jpeg|png|gif)/).any? and File.size(file) < IMAGE_SIZE_LIMIT
+	end
+
+	def clear_data
+		`rm -rf #{IMAGE_PATH + _id.to_s}`
+		`rm -rf #{AUDIO_PATH + _id.to_s}`
 	end
 
 	private

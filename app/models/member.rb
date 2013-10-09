@@ -192,7 +192,7 @@ class Member
 	end
 
 	def clear_data
-		`rm -rf #{AVATAR_PATH + _id}`
+		`rm -rf #{AVATAR_PATH + _id.to_s}`
 	end
 
 	def as_json
