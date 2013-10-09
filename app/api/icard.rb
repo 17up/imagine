@@ -57,11 +57,18 @@ class Icard < Grape::API
 			@uw = find_or_create_uw(params[:_id])
 			# wav file
 			file = params[:file].tempfile.path
-			@uw.make_audio(file)
 			audio = Speech::AudioToText.new(file)
-			resp = audio.to_text.inspect
-			Rails.logger.info resp
-			data = resp == @uw.title
+			# resp = audio.to_json
+			# resp["hypotheses"][0]
+			text = audio.to_text.inspect
+			Rails.logger.info text
+			if correct = text == @uw.title
+				@uw.make_audio(file)
+			end
+			data = {
+				correct: correct,
+				text: text
+			}
 			render_json 0,"ok",data
 		end
 	end
