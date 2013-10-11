@@ -60,16 +60,22 @@ class Icard < Grape::API
 			audio = Speech::AudioToText.new(file)
 			# resp = audio.to_json
 			# resp["hypotheses"][0]
-			text = audio.to_text.downcase
-			Rails.logger.info text
-			if correct = text == @uw.title
-				@uw.make_audio(file)
+			# singularize / pluralize
+			begin
+				text = audio.to_text.downcase
+				Rails.logger.info text
+				if correct = text == @uw.title
+					@uw.make_audio(file)
+				end
+				data = {
+					correct: correct,
+					text: text
+				}
+				render_json 0,"ok",data
+			rescue => ex
+				Rails.logger.info ex.to_s
+				render_json -1,"error"
 			end
-			data = {
-				correct: correct,
-				text: text
-			}
-			render_json 0,"ok",data
 		end
 	end
 
