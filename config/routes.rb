@@ -32,12 +32,12 @@ Veggie::Application.routes.draw do
 		post 'destroy'
 	end
 
+	get "w/:id", :to => "words#show"
+	get "uw/:id", :to => "words#u_show"
 	namespace :words do
 		get "index"
 		post 'fetch'
 		post "add_imagine"
-		post 'upload_img_u'
-		post 'upload_audio_u'
 	end
 
 	namespace :songs do

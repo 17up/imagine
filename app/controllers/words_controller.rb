@@ -15,6 +15,20 @@ class WordsController < ApplicationController
 		render_json 0,"ok",data
 	end
 
+	# word page
+	def show
+		@word = Word.find(params[:id])
+		set_seo_meta(@word.title)
+	end
+
+	# u_word page
+	def u_show
+		@u_word = UWord.find(params[:id])
+		set_seo_meta(@u_word.title)
+	end
+
+	# teacher view
+	# 联想同义词，提供wordnet & bing参考
 	# POST
 	def fetch
 		title = params[:title].strip
@@ -33,7 +47,7 @@ class WordsController < ApplicationController
 	# @id
 	# @synset array
 	# @sentence
-	# 联想同义词，提供wordnet参考，由老师编辑添加
+	# 由老师编辑添加
 	def add_imagine
 		word = Word.find(params[:_id])
 		word.synset = params[:synset].split(",")
