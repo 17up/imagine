@@ -24,14 +24,14 @@ class Icard < Grape::API
 	resource :cards do
 		desc "get u_words"
 		get "/" do
-			data = Eva::Icard.new(current_device).list
+			data = Eva::Icard.new(current_device).list(params[:number] || 1000)
 			render_json 0, "ok", data
 		end
 
 		desc "get u_word collection by same word id"
 		get :collection do
 			word = Word.find(params[:id])
-			data = word.u_words.map{|w| w.image}
+			data = word.u_words.map{|w| w.image}.compact
 			render_json 0,"ok", data
 		end
 

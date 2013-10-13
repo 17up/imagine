@@ -58,8 +58,8 @@ module Eva
 	end
 
 	class Icard < Base
-		def list
-			Word.limit(30).as_json
+		def list(num)
+			Word.limit(num).sort.as_json.group_by{|x| x['title'][0,1] }
 		end
 	end
 
