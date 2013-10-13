@@ -48,8 +48,17 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
 				end
 				flash[:success] = t('flash.notice.welcome',name: new_user.name)
 			end
-			redirect_to "/"
+			if check_mobile
+				redirect_to "imagine://org.17up.card"
+			else
+				redirect_to "/"
+			end
 		end
+	end
+
+	def check_mobile
+		agent = request.user_agent.downcase
+		agent.include?("iphone") or agent.include?("android")
 	end
 
 	def after_omniauth_failure_path_for(scope)

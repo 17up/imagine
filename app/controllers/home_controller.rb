@@ -5,8 +5,4 @@ class HomeController < ApplicationController
 		@num = 1700 - Member.count
 	end
 
-	def mobile
-		redirect_to "imagine://org.17up.card"
-	end
-
 end
