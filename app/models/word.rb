@@ -18,6 +18,16 @@ class Word
 	IMAGE_PATH = "#{Rails.root}/public"+IMAGE_URL
 	after_create :draw
 
+	class << self
+		def pos_by(pos,match_any = true)
+			if match_any
+				self.any_in(pos: pos.split(","))
+			else
+				self.all_in(pos: pos.split(","))
+			end
+		end
+	end
+
 	def source_voice
 		$dict_source[:english_v] + URI.encode(self.title)
 	end
