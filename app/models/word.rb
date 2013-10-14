@@ -2,7 +2,9 @@ class Word
 	include Mongoid::Document
 
 	field :title
-	field :content,localize: true
+	field :content
+	field :raw_content, type: Array
+	field :pos, type: Array, default: []
 	field :lang
 	field :synset, type: Array, default: []
 	field :sentence, type: Array, default: []
@@ -50,16 +52,14 @@ class Word
 		ext = {
 			_id: id.to_s
 		}
-		super(only: [:title,:content,:synset,:sentence]).merge(ext)
+		super(only: [:title,:content,:raw_content,:pos,:synset,:sentence]).merge(ext)
 	end
 
 	rails_admin do
 		field :title
-		field :content do
-			pretty_value do
-				value["#{I18n.locale.to_s}"]
-			end
-		end
+		field :content
+		field :raw_content
+		field :pos
 		field :synset
 		field :sentence
 	end

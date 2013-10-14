@@ -15,18 +15,48 @@ module Onion
 			c_url = $dict_source[:english] + title
 			e_url = "http://www.vocabulary.com/dictionary/" + title
 
-			c_page = Mechanize.new.get(c_url)
-			e_page = Mechanize.new.get(e_url)
+			c_page = Mechanize.new{ |agent|
+				agent.user_agent_alias = "Mac Safari"
+			}.get(c_url)
+			e_page = Mechanize.new{ |agent|
+				agent.user_agent_alias = "Mac Safari"
+			}.get(e_url)
 
-			content = {
-				"zh-cn" => c_page.parser.xpath("//div[@class='group_pos']").text.gsub(/\s/,"").strip,
-				"en" => e_page.parser.xpath("//div[@id='definition']//p[@class='short']").text
+			page_sections = c_page.search("//div[@class='group_pos']")[0].css("p")
+			cn = page_sections.inject([]) do |n,m|
+				pos = m.css(".fl").text.strip.gsub(".","")
+				text = m.css(".label_list").text.strip
+				n << {
+					pos: pos,
+					text: text
+				}
+			end
+
+			page_sections = e_page.search("//table[@class='definitionNavigator']")[0].css("tr")
+			en = page_sections.inject([]) do |n,m|
+				pos = m.css(".posList").text.strip
+				text = m.css(".def").text.strip
+				n << {
+					pos: pos,
+					text: text
+				}
+			end
+			content = e_page.search("//div[@id='definition']//p[@class='short']").text
+			pos = cn.map{|x| x[:pos]} + en.map{|x| x[:pos]}
+
+			{
+				content: content,
+				pos: pos.uniq,
+				raw_content: {
+					cn: cn,
+					en: en
+				}
 			}
 		end
 
 		def insert(opts = {})
 			unless opts[:skip_exist] && @word.content
-				@word.content_translations = from_web(@word.title)
+				@word.attributes = from_web(@word.title)
 				@word.save
 			end
 			@word
