@@ -17,4 +17,17 @@ namespace :word do
 			w.save
 		end
 	end
+
+	desc "renew content"
+	task :content => :environment do
+		Word.pluck(:title).each do |t|
+			begin
+				Onion::Word.new(t).insert
+				p "------------------"
+			rescue => ex
+				p ex
+				p t
+			end
+		end
+	end
 end
