@@ -18,24 +18,22 @@ module Onion
 			c_page = Mechanize.new{ |agent|
 				agent.user_agent_alias = "Mac Safari"
 			}.get(c_url)
-			e_page = Mechanize.new{ |agent|
-				agent.user_agent_alias = "Mac Safari"
-			}.get(e_url)
+			e_page = Mechanize.new{ |agent| agent.user_agent_alias = "Mac Safari"}.get(e_url)
 
 			page_sections = c_page.search("//div[@class='group_pos']")[0].css("p")
 			cn = page_sections.inject([]) do |n,m|
 				pos = m.css(".fl").text.strip.gsub(".","")
-				text = m.css(".label_list").text.strip
+				text = m.css(".label_list").text.strip.gsub(/\s/,'')
 				n << {
 					pos: pos,
 					text: text
 				}
 			end
 
-			page_sections = e_page.search("//table[@class='definitionNavigator']")[0].css("tr")
+			page_sections = e_page.search("//h3[@class='definition']")
 			en = page_sections.inject([]) do |n,m|
-				pos = m.css(".posList").text.strip
-				text = m.css(".def").text.strip
+				pos = m.css("a.anchor").text.strip
+				text = m.text.gsub(/(\r|\n|\t)/,'').sub(pos,"").strip
 				n << {
 					pos: pos,
 					text: text
