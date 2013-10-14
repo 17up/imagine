@@ -38,7 +38,7 @@ class WordsController < ApplicationController
 			word.synset = Onion::Word.wordnet(title,:synset)
 		end
 		if word.sentence.blank?
-			word.sentence = Onion::Word.from_bing(title).map{|x| x[:en]}
+			word.sentence = Onion::Word.from_bing(title)
 		end
 		word.save
 		render_json 0,"ok",word.as_json
