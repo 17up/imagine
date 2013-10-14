@@ -5,6 +5,7 @@ module Onion
 		require 'wordnet'
 
 		def initialize(word)
+			word = word.strip
 			unless @word = ::Word.where(:title => word).first
 				@word = ::Word.new(:title => word)
 			end

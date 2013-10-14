@@ -60,6 +60,8 @@ class Word
 				value["#{I18n.locale.to_s}"]
 			end
 		end
+		field :synset
+		field :sentence
 	end
 
 	index({ title: 1})
