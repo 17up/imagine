@@ -30,4 +30,21 @@ namespace :word do
 			end
 		end
 	end
+
+	desc "renew family"
+	task  :family => :environment do
+		Word.all.each do |w|
+			begin
+				e_url = "http://www.vocabulary.com/dictionary/" + w.title
+				e_page = Mechanize.new{ |agent| agent.user_agent_alias = "Mac Safari"}.get(e_url)
+				raw_family =  eval e_page.at("wordfamily").attr("data").gsub(":","=>")
+				w.family = raw_family.map{|x| {:word => x["word"],:freq => x["freq"]} }
+				w.save
+				p "------------------"
+			rescue => ex
+				p ex
+				p w.title
+			end
+		end
+	end
 end
