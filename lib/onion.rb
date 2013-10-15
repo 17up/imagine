@@ -11,17 +11,23 @@ module Onion
 			end
 		end
 
-		def from_web(title)
+		def init_c_page(title)
 			c_url = $dict_source[:english] + title
+			Mechanize.new{ |agent| agent.user_agent_alias = "Mac Safari"}.get(c_url)
+		end
+
+		def init_e_page(title)
 			e_url = "http://www.vocabulary.com/dictionary/" + title
+			Mechanize.new{ |agent| agent.user_agent_alias = "Mac Safari"}.get(e_url)
+		end
 
-			c_page = Mechanize.new{ |agent|
-				agent.user_agent_alias = "Mac Safari"
-			}.get(c_url)
-			e_page = Mechanize.new{ |agent| agent.user_agent_alias = "Mac Safari"}.get(e_url)
+		def get_content(e_page)
+			e_page.search("//div[@id='definition']//p[@class='short']").text.strip
+		end
 
+		def get_cn_raw(c_page)
 			page_sections = c_page.search("//div[@class='group_pos']")[0].css("p")
-			cn = page_sections.inject([]) do |n,m|
+			page_sections.inject([]) do |n,m|
 				pos = m.css(".fl").text.strip.gsub(".","")
 				text = m.css(".label_list").text.strip.gsub(/\s/,'')
 				n << {
@@ -29,9 +35,11 @@ module Onion
 					text: text
 				}
 			end
+		end
 
+		def get_en_raw(e_page)
 			page_sections = e_page.search("//h3[@class='definition']")
-			en = page_sections.inject([]) do |n,m|
+			page_sections.inject([]) do |n,m|
 				pos = m.css("a.anchor").text.strip
 				text = m.text.gsub(/(\r|\n|\t)/,'').sub(pos,"").strip
 				n << {
@@ -39,10 +47,23 @@ module Onion
 					text: text
 				}
 			end
-			content = e_page.search("//div[@id='definition']//p[@class='short']").text.strip
+		end
 
+		def get_family(e_page)
 			raw_family =  eval e_page.at("wordfamily").attr("data").gsub(":","=>")
-			family = raw_family.map{|x| {:word => x["word"],:freq => x["freq"]} }
+			raw_family.map{|x| {:word => x["word"],:freq => x["freq"]} }
+		end
+
+		def from_web(title)
+			c_page = init_c_page(title)
+			e_page = init_e_page(title)
+
+			cn = get_cn_raw(c_page) rescue []
+			en = get_en_raw(e_page) rescue []
+
+			content = get_content(e_page) rescue ""
+
+			family = get_family(e_page) rescue []
 
 			pos = cn.map{|x| x[:pos]} + en.map{|x| x[:pos]}
 

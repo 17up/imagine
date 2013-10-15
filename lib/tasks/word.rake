@@ -43,7 +43,7 @@ namespace :word do
 				p "------------------"
 			rescue => ex
 				p ex
-				p t
+				p w.title
 			end
 		end
 	end
