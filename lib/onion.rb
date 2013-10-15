@@ -39,12 +39,17 @@ module Onion
 					text: text
 				}
 			end
-			content = e_page.search("//div[@id='definition']//p[@class='short']").text
+			content = e_page.search("//div[@id='definition']//p[@class='short']").text.strip
+
+			raw_family =  eval e_page.at("wordfamily").attr("data").gsub(":","=>")
+			family = raw_family.map{|x| {:word => x["word"],:freq => x["freq"]} }
+
 			pos = cn.map{|x| x[:pos]} + en.map{|x| x[:pos]}
 
 			{
 				content: content,
 				pos: pos.uniq,
+				family: family,
 				raw_content: {
 					cn: cn,
 					en: en
@@ -81,21 +86,6 @@ module Onion
 			result = Wali::Base.new(Authorization.official("twitter")).client.search(title,:result_type => "popular",:count => count,:show_user => false,:include_entities => false)
 			sentences = result.statuses.collect(&:text).select{|s| !s.scan(/#|RT|&amp/).any? }
 			sentences.map{|x| x.gsub(/\(\d+\)|~|http([^\s]*)(\s|$)/,'')}.uniq if sentences.any?
-		end
-
-		def self.from_bing(title)
-			url = "http://cn.bing.com/dict/search?q=#{title}"
-			client = Mechanize.new{ |agent|
-				agent.user_agent_alias = "Mac Safari" #"Windows Mozilla"
-			}
-			client.get(url) do |page|
-				return (page/'div.se_li1').map{|x|
-					{
-						en: x.at(".sen_en").text,
-						cn: x.at(".sen_cn").text
-					}
-				}
-			end
 		end
 
 		# insert words form file

@@ -37,9 +37,6 @@ class WordsController < ApplicationController
 		unless word.synset.present?
 			word.synset = Onion::Word.wordnet(title,:synset)
 		end
-		if word.sentence.blank?
-			word.sentence = Onion::Word.from_bing(title)
-		end
 		word.save
 		render_json 0,"ok",word.as_json
 	end
@@ -51,7 +48,6 @@ class WordsController < ApplicationController
 	def add_imagine
 		word = Word.find(params[:_id])
 		word.synset = params[:synset].split(",")
-		word.sentence = params[:sentence].split("~")
 		word.save
 		render_json 0,"ok",word.as_json
 	end

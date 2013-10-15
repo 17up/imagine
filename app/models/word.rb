@@ -3,11 +3,11 @@ class Word
 
 	field :title
 	field :content
-	field :raw_content, type: Array
+	field :raw_content, type: Hash
 	field :pos, type: Array, default: []
 	field :lang
+	field :family, type: Array, default: []
 	field :synset, type: Array, default: []
-	field :sentence, type: Array, default: []
 
 	has_many :u_words
 
@@ -62,7 +62,7 @@ class Word
 		ext = {
 			_id: id.to_s
 		}
-		super(only: [:title,:content,:raw_content,:pos,:synset,:sentence]).merge(ext)
+		super(only: [:title,:content,:raw_content,:pos,:synset,:family]).merge(ext)
 	end
 
 	rails_admin do
@@ -70,8 +70,8 @@ class Word
 		field :content
 		field :raw_content
 		field :pos
+		field :family
 		field :synset
-		field :sentence
 	end
 
 	index({ title: 1})
