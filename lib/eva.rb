@@ -59,7 +59,7 @@ module Eva
 
 	class Icard < Base
 		def list(num)
-			Word.limit(num).as_json.group_by{|x| x['title'][0,1].downcase }
+			Word.limit(num).as_json#.group_by{|x| x['title'][0,1].downcase }
 		end
 	end
 
