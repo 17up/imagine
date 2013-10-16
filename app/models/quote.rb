@@ -18,6 +18,7 @@ class Quote < Text
 	scope :one_tag, -> {where(:tags.with_size => 1)}
 	scope :with_author, -> {where(:author.exists => true)}
 	scope :without_author, -> {where(author: nil)}
+	scope :lt_100, -> {where("this.content.length < 100")}
 
 	def update_time
 		self.set(:u_at,Time.current)
@@ -26,14 +27,18 @@ class Quote < Text
 	class << self
 		def tag_by(tag_list,match_any = true)
 			if match_any
-				Quote.any_in(tags: tag_list.split(","))
+				self.any_in(tags: tag_list.split(","))
 			else
-				Quote.all_in(tags: tag_list.split(","))
+				self.all_in(tags: tag_list.split(","))
 			end
 		end
 
+		def content_by(query)
+			self.where(:content => /#{query}/)
+		end
+
 		def author_by author_name
-			Quote.where('author.name' => author_name)
+			self.where('author.name' => author_name)
 		end
 
 		# output array 947.William_Shakespeare
