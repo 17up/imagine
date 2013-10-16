@@ -93,6 +93,13 @@ class UWord
 		`rm -rf #{AUDIO_PATH + _id.to_s}`
 	end
 
+	def as_json
+		{
+			_id: id.to_s,
+			image: image
+		}
+	end
+
 	private
 	def has_audio
 		return File.exist?(audio_path)

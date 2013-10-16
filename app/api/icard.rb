@@ -28,10 +28,19 @@ class Icard < Grape::API
 			render_json 0, "ok", data
 		end
 
-		desc "get u_word collection by same word id"
+		desc "get u_word collection by same word id limit 4"
 		get :collection do
 			word = Word.find(params[:id])
-			data = word.u_words.map{|w| w.image}.compact
+			limit = params[:limit] || 4
+			data = word.u_words.has_image.limit(limit).as_json
+			render_json 0,"ok", data
+		end
+
+		desc "get quotes for word"
+		get :quotes do
+			word = Word.find(params[:id])
+			length = params[:length] || 100
+			data = Quote.content_by(word.title).lt(length).map(&:as_short_json)
 			render_json 0,"ok", data
 		end
 

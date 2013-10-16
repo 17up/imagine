@@ -18,7 +18,7 @@ class Quote < Text
 	scope :one_tag, -> {where(:tags.with_size => 1)}
 	scope :with_author, -> {where(:author.exists => true)}
 	scope :without_author, -> {where(author: nil)}
-	scope :lt_100, -> {where("this.content.length < 100")}
+	scope :lt, -> (length) {where("this.content.length < #{length}")}
 
 	def update_time
 		self.set(u_at: Time.current)
