@@ -21,7 +21,7 @@ class Quote < Text
 	scope :lt_100, -> {where("this.content.length < 100")}
 
 	def update_time
-		self.set(:u_at,Time.current)
+		self.set(u_at: Time.current)
 	end
 
 	class << self
