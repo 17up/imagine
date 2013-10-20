@@ -32,8 +32,16 @@ class Icard < Grape::API
 		get :collection do
 			word = Word.find(params[:id])
 			limit = params[:limit] || 4
-			data = word.u_words.has_image.limit(limit).as_json
+			data = word.u_words.has_image.desc(:good).limit(limit).as_json
 			render_json 0,"ok", data
+		end
+
+		desc "add good for u_word"
+		get :good do
+			uw = UWord.find(params[:id])
+			uw.good = uw.good + 1
+			uw.save
+			render_json 0,"ok"
 		end
 
 		desc "get quotes for word"

@@ -6,7 +6,7 @@ class UWord
 	field :geo, type: Array
 	field :altitude, type: Float
 	field :cap_at, type: DateTime
-	field :good, type: Integer
+	field :good, type: Integer, default: 0
 
 	belongs_to :device_member
 	belongs_to :word
@@ -95,7 +95,7 @@ class UWord
 
 	def as_json
 		{
-			_id: id.to_s,
+			id: id.to_s,
 			image: image
 		}
 	end
