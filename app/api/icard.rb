@@ -15,7 +15,7 @@ class Icard < Grape::API
 		desc "register or login"
 		get "/" do
 			unless current_device
-				current_device = DeviceMember.generate("icard",params.slice(:uuid,:name,:platform))
+				current_device = DeviceMember.generate("17Word",params.slice(:uuid,:name,:platform))
 			end
 			render_json 0,"ok",current_device.as_json
 		end
@@ -32,7 +32,7 @@ class Icard < Grape::API
 		get :collection do
 			word = Word.find(params[:id])
 			limit = params[:limit] || 4
-			data = word.u_words.has_image.desc(:good).limit(limit).as_json
+			data = word.u_words.has_image.desc(:u_at).limit(limit).as_json
 			render_json 0,"ok", data
 		end
 

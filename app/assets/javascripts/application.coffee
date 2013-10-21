@@ -19,8 +19,8 @@ $ ->
 	$('body').on 'click',"span.close", ->
 		$(@).parent().remove()
 	soundManager.setup
-    useHTML5Audio: true
-    preferFlash: false
+		useHTML5Audio: true
+		preferFlash: false
 	$init = $("#init")
 	if $init.length is 1
 		js_class = $init.data().js
