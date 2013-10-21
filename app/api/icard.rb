@@ -22,14 +22,15 @@ class Icard < Grape::API
 	end
 
 	resource :cards do
-		desc "get u_words"
+		desc "get words"
 		get "/" do
 			data = Eva::Icard.new(current_device).list(params[:number] || 1000)
 			render_json 0, "ok", data
 		end
 
-		desc "get u_word collection by same word id limit 4"
-		get :collection do
+		# 联想相关词汇卡片
+		desc "imagine u_word by specify word limit 4"
+		get :imagine do
 			word = Word.find(params[:id])
 			limit = params[:limit] || 4
 			data = word.u_words.has_image.desc(:u_at).limit(limit).as_json
