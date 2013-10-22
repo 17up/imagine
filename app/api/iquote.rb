@@ -6,21 +6,32 @@ class Iquote < Grape::API
 
 	helpers APIHelpers
 
+	before do
+		authenticated_device?
+	end
+
 	resource :quotes do
 		desc "get quotes"
-		get :index do
-			render_json 0, "ok", Eva::Quote.new(nil).collection
+		get "/" do
+			num = params[:num] || 50
+			tag = params[:tag] || "love"
+			data = Eva::Quote.new(current_device).list(tag,num)
+			render_json 0, "ok", data
+		end
+
+		desc "get quotes for word"
+		get :by_word do
+			length = params[:length] || 100
+			data = Quote.content_by(params[:title]).lt(length).map(&:as_short_json)
+			render_json 0,"ok", data
 		end
 
 		desc "like one quote"
-		params do
-			requires :_id, type: Integer, desc: "quote ID"
-			requires :auth_token, type: String, desc: "authentication_token"
-		end
 		post :like do
-			Quote.find(params[:_id]).liked_by(current_member)
+			Quote.find(params[:_id]).liked_by(current_device)
 			render_json 0, "ok"
 		end
+
 	end
 
 end

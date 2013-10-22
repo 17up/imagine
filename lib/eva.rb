@@ -28,8 +28,8 @@ module Eva
 			@quote.as_short_json if @quote
 		end
 
-		def collection(tag = "love")
-			@quotes = ::Quote.tag_by(tag).desc("u_at").limit(50)
+		def list(tag,num)
+			@quotes = ::Quote.tag_by(tag).desc("u_at").limit(num)
 			@quotes.map(&:as_short_json)
 		end
 
@@ -59,7 +59,11 @@ module Eva
 
 	class Icard < Base
 		def list(num)
-			Word.limit(num).as_json#.group_by{|x| x['title'][0,1].downcase }
+			Word.limit(num).map do |w|
+				q = Quote.content_by(w.title).lt(100).limit(3).as_json(only: [:content])
+				w.as_json.merge!(quotes: q)
+			end
+			#.group_by{|x| x['title'][0,1].downcase }
 		end
 	end
 

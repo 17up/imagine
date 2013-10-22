@@ -37,20 +37,12 @@ class Icard < Grape::API
 			render_json 0,"ok", data
 		end
 
-		desc "add good for u_word"
+		desc "when share auto add good for u_word"
 		get :good do
 			uw = UWord.find(params[:id])
 			uw.good = uw.good + 1
 			uw.save
 			render_json 0,"ok"
-		end
-
-		desc "get quotes for word"
-		get :quotes do
-			word = Word.find(params[:id])
-			length = params[:length] || 100
-			data = Quote.content_by(word.title).lt(length).map(&:as_short_json)
-			render_json 0,"ok", data
 		end
 
 		desc "make one word card no share"
