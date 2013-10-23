@@ -5,13 +5,10 @@ class Word
 	field :content
 	field :raw_content, type: Hash
 	field :pos, type: Array, default: []
-	field :lang
 	field :family, type: Array, default: []
 	field :synset, type: Array, default: []
 
 	has_many :u_words
-
-	scope :en, -> {where(lang: nil)}
 
 	validates :title, presence: true, uniqueness: true
 	IMAGE_URL = "/system/images/word/"
@@ -24,6 +21,14 @@ class Word
 				self.any_in(pos: pos.split(","))
 			else
 				self.all_in(pos: pos.split(","))
+			end
+		end
+		# 词汇类别 eg: Coffee
+		def cate_by(cate,match_any = true)
+			if match_any
+				self.any_in(synset: cate.split(","))
+			else
+				self.all_in(synset: cate.split(","))
 			end
 		end
 	end
