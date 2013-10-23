@@ -22,7 +22,7 @@ module Eva
 
 	end
 
-	class Quote < Base
+	class Iquote < Base
 		def single
 			@quote = ::Quote.tag_by("love").desc("u_at").first
 			@quote.as_short_json if @quote

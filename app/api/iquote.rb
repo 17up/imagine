@@ -15,7 +15,7 @@ class Iquote < Grape::API
 		get "/" do
 			num = params[:num] || 50
 			tag = params[:tag] || "love"
-			data = Eva::Quote.new(current_device).list(tag,num)
+			data = Eva::Iquote.new(current_device).list(tag,num)
 			render_json 0, "ok", data
 		end
 
