@@ -19,6 +19,7 @@ class Quote < Text
 	scope :with_author, -> {where(:author.exists => true)}
 	scope :without_author, -> {where(author: nil)}
 	scope :lt, -> (length) {where("this.content.length < #{length}")}
+	scope :content_by, -> (query) {where(:content => /#{query}/)}
 
 	def update_time
 		self.set(u_at: Time.current)
@@ -31,10 +32,6 @@ class Quote < Text
 			else
 				self.all_in(tags: tag_list.split(","))
 			end
-		end
-
-		def content_by(query)
-			self.where(:content => /#{query}/)
 		end
 
 		def author_by author_name
