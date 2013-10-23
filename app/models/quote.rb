@@ -19,7 +19,7 @@ class Quote < Text
 	scope :with_author, -> {where(:author.exists => true)}
 	scope :without_author, -> {where(author: nil)}
 	scope :lt, -> (length) {where("this.content.length < #{length}")}
-	scope :content_by, -> (query) {where(:content => /#{query}/)}
+	scope :content_by, -> (query) {where(:content => /\s#{query}/)}
 
 	def update_time
 		self.set(u_at: Time.current)

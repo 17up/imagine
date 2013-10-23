@@ -52,10 +52,15 @@ namespace :word do
 	task :quote => :environment do
 		file = File.open(Rails.root + "log/api.json","a")
 		quotes = Quote.lt(100)
+		cnt = 0
 		data = Word.all.map do |w|
 			q = quotes.content_by(w.title).limit(2).map{|x| x.content}
+			if q.any?
+				cnt = cnt + 1
+			end
 			w.as_json.merge!(quotes: q)
 		end
-		file.write data
+		p cnt
+		file.write data.to_json
 	end
 end
