@@ -22,11 +22,11 @@ class Icard < Grape::API
 	end
 
 	resource :cards do
-		desc "get words"
-		get "/" do
-			data = Eva::Icard.new(current_device).list(params[:number] || 1000)
-			render_json 0, "ok", data
-		end
+		# desc "get words"
+		# get "/" do
+		# 	data = Eva::Icard.new(current_device).list(params[:number] || 1000)
+		# 	render_json 0, "ok", data
+		# end
 
 		# 联想相关词汇卡片
 		desc "imagine u_word by specify word limit 4"

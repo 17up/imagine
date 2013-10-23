@@ -47,4 +47,15 @@ namespace :word do
 			end
 		end
 	end
+
+	desc "merge quote"
+	task :quote => :environment do
+		file = File.open(Rails.root + "log/api.json","a")
+		quotes = Quote.lt(100)
+		data = Word.all.map do |w|
+			q = quotes.content_by(w.title).last.content
+			w.as_json.merge!(quote: q)
+		end
+		file.write data
+	end
 end

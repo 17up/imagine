@@ -59,11 +59,6 @@ module Eva
 
 	class Icard < Base
 		def list(num)
-			quotes = Quote.lt(100)
-			Word.limit(num).map do |w|
-				q = quotes.content_by(w.title).last.content
-				w.as_json.merge!(quote: q)
-			end
 			#.group_by{|x| x['title'][0,1].downcase }
 		end
 	end
