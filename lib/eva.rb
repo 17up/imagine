@@ -59,8 +59,9 @@ module Eva
 
 	class Icard < Base
 		def list(num)
+			quotes = Quote.lt(100)
 			Word.limit(num).map do |w|
-				q = Quote.lt(100).content_by(w.title).limit(3).as_json(only: [:content])
+				q = quotes.content_by(w.title).limit(3).as_json(only: [:content])
 				w.as_json.merge!(quotes: q)
 			end
 			#.group_by{|x| x['title'][0,1].downcase }
