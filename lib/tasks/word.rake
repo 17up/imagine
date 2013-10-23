@@ -53,8 +53,8 @@ namespace :word do
 		file = File.open(Rails.root + "log/api.json","a")
 		quotes = Quote.lt(100)
 		data = Word.all.map do |w|
-			q = quotes.content_by(w.title).last.content
-			w.as_json.merge!(quote: q)
+			q = quotes.content_by(w.title).limit(2).map{|x| x.content}
+			w.as_json.merge!(quotes: q)
 		end
 		file.write data
 	end
