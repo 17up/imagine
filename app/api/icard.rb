@@ -36,8 +36,8 @@ class Icard < Grape::API
 			data = word.u_words.has_image.desc(:u_at).limit(limit).as_json
 			render_json 0,"ok", data
 		end
-
-		desc "when share auto add good for u_word"
+		# 加赞
+		desc "add good for u_word"
 		get :good do
 			uw = UWord.find(params[:id])
 			uw.good = uw.good + 1
