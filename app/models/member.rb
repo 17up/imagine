@@ -106,10 +106,12 @@ class Member
 	end
 
 	def checkin(course)
-		gems = self.gems - course.price
-		return false if gems < 0
-		self.course_grades << CourseGrade.new(course_id: course.id)
-		self.set :gems,gems
+		unless has_checkin?(course.id)
+			gems = self.gems - course.price
+			return false if gems < 0
+			self.course_grades << CourseGrade.new(course_id: course.id)
+			self.set(gems: gems)
+		end
 	end
 
 	def invited_courses
