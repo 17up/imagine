@@ -27,13 +27,19 @@ $grey_1: #8e44ad
 $grey_2: #9b59b6
 $black_1: #2c3e50
 $black_2: #34495e
-$sea: #1abc9c
+$sea_1: #1abc9c
+$sea_2: #16a085
 $orange_1: #f39c12
 $orange_2: #f1c40f
 $orange_3: #e67e22
+
+$max-width: 640px
+body.welcome
+	background: #f4eedf
+
 #container
 	margin: 0 auto
-	max-width: 640px
+	max-width: $max-width
 	position: relative
 	margin-bottom: 10px
 	.item
@@ -48,20 +54,26 @@ $orange_3: #e67e22
 			text-align: left
 			padding: 5px 10px
 	#logo
-		background-color: $sea
+		background-color: $sea_1
+		border-top: 4px solid $sea_2
+		border-bottom: 2px solid $sea_2
 		padding: 20px
 		font-size: 60px
 		border-radius: 70px 5px
-	@media only screen and (min-width: 640px)
+	@media only screen and (min-width: $max-width)
 		#topic
 			width: 478px
 		#login
 			width: 630px
+		#app,#contact
+			width: ($max-width - 20px)/2
+		#copyright
+			width: ($max-width - 10px)
 	#topic
 		background-color: $blue_2
 		.title
 			font-size: 50px
-			padding: 12px 20px
+			padding: 15px 20px
 		.desc
 			background-color: $blue_1
 	#login
@@ -88,12 +100,13 @@ $orange_3: #e67e22
 		.desc
 			background-color: $orange_1
 		.content
-			padding: 20px
+			padding: 13px
 			font-size: 30px
 		.mail
-			background-color: $orange_3
+			background-color: rgba(0,0,0,0.2)
 		a
 			display: block
+			color: $orange_3
 	#copyright
 		background-color:  $black_1
 		.title
