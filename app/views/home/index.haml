@@ -1,60 +1,38 @@
-.logo_text.dancer
-	17up
-= render 'sorry'
-#welcome_wrap
-	#impress
-		#topic.step(data-x="0" data-y="1800" data-z="3000" data-scale="1")
-			#logo.title.amienne
-				imagine english
-			.desc
-				知行合一
-				%br
-				以联想的方式学英语
-			%p.text_center
-				%a(href="/members/auth/qq_connect")
-					= image_tag("icon/qq_connect.png")
-		#belief.amienne.step(data-x="0" data-y="600" data-z="1500" data-scale="1")
-			#love-map
-				%span.dancer
-					love
-				%span.moon
-					✈
-			.title.amienne
-				Love can change anything
-
-		#login.step(data-x="0" data-y="-600" data-z="0" data-scale="1")
-			.desc
-				还差
-				%span.num
-					= @num
-				名志愿者
-				%br
-				你可以选择以下任意方式加入
-			.providers
-				- Authorization::PROVIDERS.each do |x|
-					= link_to member_omniauth_authorize_path(x.to_sym) do
-						%span{:class => "icon-#{x}",:title => x}
-
-
-		#app.step.text_center(data-x="0" data-y="-1800" data-z="1500"  data-scale="1")
-			.desc
-				17Card 卡片记单词
-
-			%p
-				= render 'shared/copyright'
-	%nav
-		%ul.tab
-			%li
-				%a(href = "#topic")
-					主题
-			%li
-				%a(href = "#belief")
-					信念
-			%li
-				%a(href = "#login")
-					加入
-			%li
-				%a(href = "#app")
-					应用
+#container.clearfix
+	#logo.item.dancer
+		17up
+	#topic.item
+		.desc
+			%i.icon-magic
+			以联想的方式学英语
+		.title.dancer
+			imagine english
+	#login.item
+		.desc
+			%i.icon-user
+			登录 或 注册
+		.providers
+			- Authorization::PROVIDERS.each do |x|
+				= link_to member_omniauth_authorize_path(x.to_sym) do
+					%span{:class => "icon-#{x}",:title => x}
+	#app.item
+		.desc
+			%i.icon-apple
+			ios App
+		.title.dancer
+			17word
+	#contact.item
+		.desc
+			%i.icon-envelope
+			Contact
+		.content.dancer
+			%a{:href => $config[:blog_host]}(target = "blank")
+				Blog
+		.desc.mail
+			= $config[:email]
+	#copyright.item
+		.desc
+			© copyright
+		= render("shared/copyright")
 - content_for :footer do
 	#init.hide(data-js="Welcome")

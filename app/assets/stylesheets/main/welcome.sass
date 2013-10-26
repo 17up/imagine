@@ -19,52 +19,96 @@
 	100%
 		opacity: 0.3
 
-+keyframes(bgcolor)
-	0%
-		background-color: #40a4ef
-	30%
-		background-color: #69d965
-	60%
-		background-color: #a65adf
-	100%
-		background-color: #40a4ef
-
-+keyframes(fontcolor)
-	0%
-		color: #c72800
-	30%
-		color: #bf5400
-	60%
-		color: #6b28b9
-	100%
-		color: #c72800
-
-body.welcome
-	background-color: #7ebbef
-	@include animation-name(bgcolor)
-	@include animation-duration(70s)
-	@include animation-iteration-count(infinite)
-	@include animation-timing-function(alternate)	
-
-.not-supported
-	.sorry_tip
-		display: block
-	.step
-		display: none
-	#welcome_wrap
-		display: none
-.logo_text
-	text-align: center
-	font-size: 11em
-	font-weight: bold
-	@include text-3d
+$blue_1: #3498db
+$blue_2: #2980b9
+$green_1: #27ae60
+$green_2: #2ecc71
+$grey_1: #8e44ad
+$grey_2: #9b59b6
+$black_1: #2c3e50
+$black_2: #34495e
+$sea: #1abc9c
+$orange_1: #f39c12
+$orange_2: #f1c40f
+$orange_3: #e67e22
+#container
+	margin: 0 auto
+	max-width: 640px
+	position: relative
+	margin-bottom: 10px
+	.item
+		float: left
+		margin: 5px
+		@include text-shadow-content-white
+		text-align: center
+		-webkit-box-sizing: border-box
+		-moz-box-sizing: border-box
+		box-sizing: border-box
+		.desc
+			text-align: left
+			padding: 5px 10px
+	#logo
+		background-color: $sea
+		padding: 20px
+		font-size: 60px
+		border-radius: 70px 5px
+	@media only screen and (min-width: 640px)
+		#topic
+			width: 478px
+		#login
+			width: 630px
+	#topic
+		background-color: $blue_2
+		.title
+			font-size: 50px
+			padding: 12px 20px
+		.desc
+			background-color: $blue_1
+	#login
+		background-color: $green_1
+		.desc
+			background-color: $green_2
+		.providers
+			font-size: 60px
+			padding: 20px
+			a
+				display: inline-block
+				padding: 0 10px
+				@include text-shadow-content-white
+	#app
+		background-color: $grey_1
+		border: 1px solid $grey_2
+		.desc
+			background-color: $grey_2
+		.title
+			padding: 20px
+			font-size: 40px
+	#contact
+		background-color:  $orange_2
+		.desc
+			background-color: $orange_1
+		.content
+			padding: 20px
+			font-size: 30px
+		.mail
+			background-color: $orange_3
+		a
+			display: block
+	#copyright
+		background-color:  $black_1
+		.title
+			padding: 20px
+		.desc
+			background-color: $black_2
+		.tool
+			display: none
 .sorry_tip
 	text-align: center
 	display: none
 	h1
 		margin: 40px 0
 		font: bold 10em sans-serif
-		font-size: 40px		
+		font-size: 40px
 	.help_link
 		margin: 40px 0
 		a
@@ -72,108 +116,43 @@ body.welcome
 			color: #333
 			.name
 				line-height: 3
-#welcome_wrap
-	min-height: 350px
-	position: relative	
-	ul.tab
-		position: fixed
+#belief
+	width: 230px
+#love-map
+	margin: 50px auto
+	width: 180px
+	height: 180px
+	background-image: asset-url('img/bg/planet.jpg')
+	background-size: 400px
+	@include round(90px)
+	position: relative
+	box-shadow: inset 16px 0 40px 3px rgba(0,0,0,0.9),inset -3px 0 5px 2px rgba(255,255,255,0.16)
+	@include animation-name(rotate)
+	@include animation-duration(8s)
+	@include animation-iteration-count(infinite)
+	@include animation-timing-function(linear)
+	span
+		display: block
+		text-align: center
+		@include text-shine
+		font-size: 80px
+		line-height: 150px
+		@include animation-name(shine)
+		@include animation-duration(5s)
+		@include animation-iteration-count(infinite)
+		@include animation-timing-function(ease-in-out)
+	span.moon
+		line-height: 1
+		font-size: 30px
+		color: $black_2
 		width: 100%
-		bottom: 0
-		margin: 0
-		padding: 0
-		font-size: 22px
-		font-weight: bold
-		@include glass
-		li 
-			list-style-type: none
-			margin: 0
-			display: table-cell
-			width: 1%
-			text-align: center
-			position: relative	
-			left: 0
-			a
-				display: block
-				padding: 20px 0
-				color: #333
-				&:hover
-					color: #207cca
-		li.active
-			a
-				color: #207cca
-	#impress		
-		opacity: 0
-		.step
-			position: relative
-			width: 900px
-			@include box-sizing(border-box)
-			opacity: 0
-			line-height: 1.5
-			text-align: center
-			@include text-shadow-inverse
-			@include transition(0.8s)
-			.title
-				padding-bottom: 20px
-				font-size: 48px
-				@include animation-name(fontcolor)
-				@include animation-duration(20s)
-				@include animation-iteration-count(infinite)
-				@include animation-timing-function(alternate)
-			.desc
-				font-size: 20px
-		.step.active
-			opacity: 1
-	#app
-		.desc
-			padding: 20px 0
-			
-	#belief
-		#love-map
-			margin: 50px auto
-			width: 180px
-			height: 180px
-			background-image: asset-url('img/bg/planet.jpg')
-			background-size: 400px
-			@include round(90px)
-			position: relative
-			box-shadow: inset 16px 0 40px 3px rgba(0,0,0,0.9),inset -3px 0 5px 2px rgba(255,255,255,0.16)
-			@include animation-name(rotate)
-			@include animation-duration(8s)
-			@include animation-iteration-count(infinite)
-			@include animation-timing-function(linear)	
-			span
-				display: block
-				text-align: center			
-				@include text-shine
-				font-size: 80px
-				line-height: 150px
-				@include animation-name(shine)
-				@include animation-duration(5s)
-				@include animation-iteration-count(infinite)
-				@include animation-timing-function(ease-in-out)
-			span.moon
-				line-height: 1
-				font-size: 30px
-				color: #6ea7f5
-				width: 100%
-				padding-bottom: 210px
-				position: absolute
-				top: -30px
-				@include animation-name(moon)
-				@include animation-duration(8s)
-				@include animation-iteration-count(infinite)
-				@include animation-timing-function(linear)		
-	#topic
-		#logo
-			font-size: 120px
+		padding-bottom: 210px
+		position: absolute
+		top: -30px
+		@include animation-name(moon)
+		@include animation-duration(8s)
+		@include animation-iteration-count(infinite)
+		@include animation-timing-function(linear)
 
-	#login
-		.providers
-			font-size: 60px 
-			a 
-				color: white
-				text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25)
-		.desc
-			padding: 10px 0
-			span.num
-				color: #e12e2a
+
+

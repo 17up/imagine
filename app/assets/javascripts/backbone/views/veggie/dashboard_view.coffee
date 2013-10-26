@@ -13,9 +13,6 @@ class window.Veggie.DashboardView extends Veggie.View
 		cv = new Veggie.CoursesView
 			collection: @courses
 		@$el.append(cv.render().el)
-	add_quote: ->
-		view = JST['item/quote'](q: @model.get("quote"))
-		$("#quote").html view
 	add_game: ->
 		model = new Game(@model.get("game"))
 		game_view = new Veggie.GameView
@@ -75,8 +72,6 @@ class window.Veggie.DashboardView extends Veggie.View
 	render_member_view: ->
 		@add_song()
 		@add_courses()
-		@add_quote()
-		@add_game()
 		window.chatroom = new Veggie.ChatView()
 	extra: ->
 		if @model.has("guides")

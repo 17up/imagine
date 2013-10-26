@@ -9,10 +9,8 @@ class MembersController < ApplicationController
 	# api get
 	def dashboard
 		data = {
-			quote: Eva::Iquote.new(current_member).single,
 			courses: Eva::Course.new(current_member).list,
-			song: Eva::Song.new(current_member).single,
-			game: Eva::Game.new(current_member).list
+			song: Eva::Song.new(current_member).single
 		}
 
 		unless current_member.is_member?
