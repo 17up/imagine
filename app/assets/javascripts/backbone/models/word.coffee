@@ -12,4 +12,4 @@ class window.Word extends Backbone.Model
 				@.set data.data
 				callback() if callback
 
-		
+

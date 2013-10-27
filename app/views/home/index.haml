@@ -1,4 +1,6 @@
-#container.clearfix
+#welcome.clearfix
+	.sorry_tip.item
+		= render "sorry"
 	#logo.item.dancer
 		17up
 	#topic.item
@@ -21,15 +23,16 @@
 			ios App
 		.title.dancer
 			17word
+
 	#contact.item
 		.desc
 			%i.icon-envelope
 			Contact
-		.content.dancer
-			%a{:href => $config[:blog_host]}(target = "blank")
-				Blog
-		.desc.mail
-			= $config[:email]
+		.content
+			= link_to $config[:blog_host],target: "blank" do
+				%i.icon-tumblr-sign
+			= mail_to $config[:email] do
+				%i.icon-envelope-alt
 	#copyright.item
 		.desc
 			© Copyright

@@ -6,9 +6,11 @@ class WordsController < ApplicationController
 		@course = Course.find(params[:_id])
 		@teacher = @course.member
 		data = @course.words.each_with_index.map do |w,i|
+			content = w.raw_content["cn"].collect{|x| "[#{x['pos']}]#{x['text']}"}.join(";")
 			ext = {
 				image: w.image,
-				num: i + 1
+				num: i + 1,
+				content: content
 			}
 			w.as_json.merge!(ext)
 		end

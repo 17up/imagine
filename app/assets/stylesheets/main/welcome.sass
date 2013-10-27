@@ -36,98 +36,103 @@ $orange_3: #e67e22
 $max-width: 640px
 body.welcome
 	background: #f4eedf
-	#container
-		margin: 0 auto
-		max-width: $max-width
-		position: relative
-		margin-bottom: 10px
-		.item
-			float: left
-			margin: 5px
-			@include text-shadow-content-white
-			text-align: center
-			-webkit-box-sizing: border-box
-			-moz-box-sizing: border-box
-			box-sizing: border-box
-			.desc
-				text-align: left
-				padding: 5px 10px
-		#logo
-			background-color: $sea_1
-			border-top: 4px solid $sea_2
-			border-bottom: 2px solid $sea_2
-			padding: 20px
-			font-size: 60px
-			border-radius: 70px 5px
-		@media only screen and (min-width: $max-width)
-			#topic
-				width: 478px
-			#login
-				width: 630px
-			#app,#contact
-				width: ($max-width - 20px)/2
-			#copyright
-				width: ($max-width - 10px)
-		#topic
-			background-color: $blue_2
-			.title
-				font-size: 50px
-				padding: 15px 20px
-			.desc
-				background-color: $blue_1
-		#login
-			background-color: $green_1
-			.desc
-				background-color: $green_2
-			.providers
-				font-size: 60px
-				padding: 20px
-				a
-					display: inline-block
-					padding: 0 10px
-					@include text-shadow-content-white
-		#app
-			background-color: $grey_1
-			border: 1px solid $grey_2
-			.desc
-				background-color: $grey_2
-			.title
-				padding: 20px
-				font-size: 40px
-		#contact
-			background-color:  $orange_2
-			.desc
-				background-color: $orange_1
-			.content
-				padding: 13px
-				font-size: 30px
-			.mail
-				background-color: rgba(0,0,0,0.2)
-			a
-				display: block
-				color: $orange_3
-		#copyright
-			background-color:  $black_1
-			.title
-				padding: 20px
-			.desc
-				background-color: $black_2
-			.tool
-				display: none
-	.sorry_tip
+
+#welcome
+	margin: 0 auto
+	max-width: $max-width
+	position: relative
+	margin-bottom: 10px
+	.item
+		float: left
+		margin: 5px
+		@include text-shadow-content-white
 		text-align: center
-		display: none
-		h1
-			margin: 40px 0
-			font: bold 10em sans-serif
-			font-size: 40px
-		.help_link
-			margin: 40px 0
+		-webkit-box-sizing: border-box
+		-moz-box-sizing: border-box
+		box-sizing: border-box
+		.desc
+			text-align: left
+			padding: 5px 10px
+	#logo
+		background-color: $sea_1
+		border-top: 4px solid $sea_2
+		border-bottom: 2px solid $sea_2
+		padding: 20px
+		font-size: 60px
+		border-radius: 70px 5px
+	@media only screen and (min-width: $max-width)
+		#topic
+			width: 478px
+		#login
+			width: 630px
+		#app,#contact
+			width: ($max-width - 20px)/2
+		#copyright
+			width: ($max-width - 10px)
+	#topic
+		background-color: $blue_2
+		.title
+			font-size: 50px
+			padding: 15px 20px
+		.desc
+			background-color: $blue_1
+			border-right: 5px solid $blue_2
+	#login
+		background-color: $green_1
+		.desc
+			background-color: $green_2
+			border-right: 5px solid $green_1
+		.providers
+			font-size: 60px
+			padding: 20px
 			a
 				display: inline-block
-				color: #333
-				.name
-					line-height: 3
+				padding: 0 10px
+				@include text-shadow-content-white
+	#app
+		background-color: $grey_1
+		border: 1px solid $grey_2
+		.desc
+			background-color: $grey_2
+			border-right: 5px solid $grey_1
+		.title
+			padding: 20px
+			font-size: 40px
+	#contact
+		background-color:  $orange_2
+		.desc
+			background-color: $orange_1
+			border-right: 5px solid $orange_2
+		.content
+			padding: 16px
+			font-size: 50px
+		a
+			display: inline-block
+			margin: 0 10px
+			color: $orange_3
+	#copyright
+		background-color:  $black_1
+		.title
+			padding: 20px
+		.desc
+			background-color: $black_2
+			border-right: 5px solid $black_1
+		.tool
+			display: none
+.sorry_tip
+	text-align: center
+	display: none
+	h1
+		margin: 40px 0
+		font: bold 10em sans-serif
+		font-size: 40px
+	.help_link
+		margin: 40px 0
+		a
+			display: inline-block
+			color: #333
+			.name
+				line-height: 3
 
 #love-map
 	margin: 50px auto
