@@ -125,6 +125,15 @@ module Onion
 			# 	end
 			# end
 		end
+
+		def website
+			url = "http://www.starbucks.com/site-map"
+			page = Mechanize.new{ |agent| agent.user_agent_alias = "Mac Safari"}.get(url)
+			columns = page.search("//div[@class='subsection']")[0].css(".column")
+			x = columns[0].css("li a").map{|x| x.attr("href")} + columns[1].css("li a").map{|x| x.attr("href")}
+			ws = x.inject([]){|a,b| a << b.split("/") }.flatten.uniq
+			ws.inject([]){|a,b| a << b.split("-") }.flatten.uniq
+		end
 	end
 
 	class Paragraph
