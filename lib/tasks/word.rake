@@ -63,4 +63,13 @@ namespace :word do
 		p cnt
 		file.write data.to_json
 	end
+
+	desc "insert words form file"
+	task :tagged =>  :environment do
+		page = Nokogiri::HTML(open(Rails.root.join('doc','GRE.html')))
+		words = page.css("li.entry").inject([]) do |a,x|
+			a << x.attr("word")
+		end.uniq
+		Onion::Word.insert_collection(words,tag: "GRE")
+	end
 end

@@ -49,7 +49,8 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
 				flash[:success] = t('flash.notice.welcome',name: new_user.name)
 			end
 			if check_mobile
-				redirect_to "imagine://org.17up.card"
+				token = current_member.authentication_token
+				redirect_to "imagine://org.17up/auth?token=#{token}"
 			else
 				redirect_to "/"
 			end

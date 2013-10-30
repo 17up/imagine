@@ -109,22 +109,27 @@ module Onion
 			sentences.map{|x| x.gsub(/\(\d+\)|~|http([^\s]*)(\s|$)/,'')}.uniq if sentences.any?
 		end
 
-		# insert words form file
-		def self.form_file
-			# page = Nokogiri::HTML(open(Rails.root.join('public','v.html')))
-			# words = page.css("li.entry").inject([]) do |a,x|
-			# 	a << x.attr("word")
-			# end.uniq
-
-			# words.each do |w|
-			# 	if ::Word.where(:title => w).any?
-			# 		p "#{w} exist"
-			# 	else
-			# 		Word.new(w).insert
-			# 		p "new #{w}"
-			# 	end
-			# end
+		# words: Array
+		def self.insert_collection(words,opts = {})
+			cnt = 0
+			words.each do |w|
+				if word = ::Word.where(:title => w).first
+					p "#{w} exist"
+				else
+					word = Word.new(w).insert
+					cnt += 1
+				end
+				if opts[:tag]
+					unless word.synset.include?(opts[:tag])
+						word.synset << opts[:tag]
+						word.save
+						p "--"
+					end
+				end
+			end
+			cnt
 		end
+
 	end
 
 	class Paragraph
