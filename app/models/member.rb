@@ -2,7 +2,7 @@ class Member
 	include Mongoid::Document
 	include Mongoid::Timestamps::Short
 
-	devise :database_authenticatable, :registerable,:token_authenticatable,
+	devise :database_authenticatable,:token_authenticatable,
 		:recoverable, :trackable, :validatable,
 		:omniauthable, omniauth_providers: [:weibo,:twitter,:github,:tumblr,:instagram,:youtube,:qq_connect]
 
