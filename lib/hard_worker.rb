@@ -23,6 +23,14 @@ module HardWorker
 		end
 	end
 
+	class ProcessImageJob < Base
+		def perform(wid,file)
+			uword = UWord.find(wid).make_image(file)
+			uword.save
+			self.logger("uword #{wid} completed")
+		end
+	end
+
 	class SendInviteJob < Base
 		def perform(message,id)
 			provider = Authorization.find(id)

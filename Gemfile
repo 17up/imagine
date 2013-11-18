@@ -87,3 +87,5 @@ gem 'sidekiq'
 # API
 gem 'grape'
 gem 'rack-cors', :require => 'rack/cors'
+
+gem 'garb', :git => 'git://github.com/Sija/garb.git'

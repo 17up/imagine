@@ -19,6 +19,18 @@ class Icard < Grape::API
 			end
 			render_json 0,"ok",current_device.as_json
 		end
+
+		# @params token
+		# @params uuid
+		desc "bind device uuid and member"
+		post :bind do
+			if member = Member.authorize(params[:token])
+				current_device.update_attribute(:member_id,member.id)
+				render_json 0,"ok",member.as_profile
+			else
+				render_json -1,"error token"
+			end
+		end
 	end
 
 	resource :cards do
@@ -45,13 +57,19 @@ class Icard < Grape::API
 			render_json 0,"ok"
 		end
 
-		desc "make one word card no share"
+		# @params async 异步图片合成，适用于同步功能
+		# 否则实时处理合成图片，适用于分享功能
+		desc "make one word card no share params[:async]"
 		post :create do
 			@uw = find_or_create_uw(params[:_id])
 			file = params[:image].tempfile.path
 			type = params[:image].content_type || params[:image].type
 			if @uw&&@uw.validate_upload_image(file,type)
-				@uw = @uw.make_image(file)
+				if params[:async]
+					HardWorker::ProcessImageJob.perform_async(@uw._id.to_s,file)
+				else
+					@uw = @uw.make_image(file)
+				end
 				@uw.geo = [params[:lat],params[:lng]]
 				@uw.altitude = params[:altitude].to_f
 				@uw.cap_at = Time.parse params[:cap_at]

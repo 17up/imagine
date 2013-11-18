@@ -12,6 +12,7 @@ class DeviceMember
 	field :gems, type: Integer, default: 0
 
 	has_many :u_words, dependent: :destroy
+	belongs_to :member
 
 	class << self
 		def auth_device(uuid)
@@ -56,6 +57,7 @@ class DeviceMember
 		field :platform
 		field :name
 		field :app
+		field :member
 		field :uuid
 		field :gems
 		field :c_at

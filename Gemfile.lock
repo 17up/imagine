@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/Sija/garb.git
+  revision: e2bfa57484687fb325e4cc70ac7f615ebc9d61e1
+  specs:
+    garb (0.9.7)
+      activesupport (>= 2.2)
+      multi_json (>= 1.3)
+
+GIT
   remote: git://github.com/mongoid/mongoid.git
   revision: 11e45e5a30a45458b83db99ab6c9d9ccc337e66f
   ref: 11e45e5a30a45458b83db99ab6c9d9ccc337e66f
@@ -459,6 +467,7 @@ DEPENDENCIES
   database_cleaner
   devise
   factory_girl_rails
+  garb!
   github_api
   goodreads_17up
   google_drive
