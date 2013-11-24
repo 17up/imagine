@@ -74,7 +74,7 @@ class Icard < Grape::API
 				@uw.altitude = params[:altitude].to_f
 				@uw.cap_at = Time.parse params[:cap_at]
 				@uw.save
-				render_json 0,"ok",@uw.image
+				render_json 0,"ok",@uw.image_url
 			else
 				render_json -1,"error"
 			end
