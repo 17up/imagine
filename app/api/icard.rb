@@ -17,7 +17,11 @@ class Icard < Grape::API
 			unless current_device
 				current_device = DeviceMember.generate("17Word",params.slice(:uuid,:name,:platform))
 			end
-			render_json 0,"ok",current_device.as_json
+			if current_device.member
+				render_json 0,"ok",current_device.member.as_profile
+			else
+				render_json 0,"ok",current_device.as_json
+			end
 		end
 
 		# @params token

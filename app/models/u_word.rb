@@ -33,8 +33,6 @@ class UWord
 	def init_dir(dir)
 		unless File.exist?(dir)
 			`mkdir -p #{dir}`
-			device_member.gems += 1
-			device_member.save
 		end
 	end
 

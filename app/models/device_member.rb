@@ -8,9 +8,6 @@ class DeviceMember
 	field :name, type: String
 	field :app, type: String
 
-	# 学币
-	field :gems, type: Integer, default: 0
-
 	has_many :u_words, dependent: :destroy
 	belongs_to :member
 
@@ -49,7 +46,7 @@ class DeviceMember
 	def as_json
 		{
 			_id: id.to_s,
-			gems: gems
+			app: app
 		}
 	end
 
@@ -59,7 +56,11 @@ class DeviceMember
 		field :app
 		field :member
 		field :uuid
-		field :gems
+		field :u_words do
+			pretty_value do
+				value.length
+			end
+		end
 		field :c_at
 	end
 
