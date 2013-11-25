@@ -10,14 +10,6 @@ namespace :word do
 		file.close
 	end
 
-	desc "renew sentence"
-	task :sentence => :environment do
-		Word.all.each do |w|
-			w.sentence = Onion::Word.from_bing(w.title)
-			w.save
-		end
-	end
-
 	desc "renew content"
 	task :content => :environment do
 		Word.pluck(:title).each do |t|

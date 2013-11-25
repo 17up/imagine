@@ -57,12 +57,6 @@ module Eva
 
 	end
 
-	class Icard < Base
-		def list(num)
-			#.group_by{|x| x['title'][0,1].downcase }
-		end
-	end
-
 	class Media < Base
 		def fetch
 			if p = @member.has_provider?("tumblr")
@@ -70,8 +64,8 @@ module Eva
 				if @member[:tumblr]
 					data =  data | @member[:tumblr]
 				end
-				@member.write_attribute(:tumblr,data)
-				@member.save
+				# @member.write_attribute(:tumblr,data)
+				# @member.save
 			end
 		end
 

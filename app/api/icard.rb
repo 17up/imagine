@@ -38,11 +38,21 @@ class Icard < Grape::API
 	end
 
 	resource :cards do
-		# desc "get words"
-		# get "/" do
-		# 	data = Eva::Icard.new(current_device).list(params[:number] || 1000)
-		# 	render_json 0, "ok", data
-		# end
+
+		# 随版本更新后，某些词汇详情的客户端数据同步更新
+		# 不会很多，属于数据修正,后端定义
+		desc "repair some word info"
+		get :repair do
+			# words = Word.where(:id => "")
+			# render_json 0,"ok",words.as_json
+		end
+
+		# 从数据库搜索 title，如无则从web上搜
+		desc "search one word from web"
+		get :search do
+
+
+		end
 
 		# 联想相关词汇卡片
 		desc "imagine u_word by specify word limit 4"
