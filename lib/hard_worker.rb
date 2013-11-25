@@ -1,7 +1,7 @@
 module HardWorker
 	class Base
 		include Sidekiq::Worker
-		sidekiq_options retry: false
+		sidekiq_options retry: 4
 
 		def logger(msg)
 			Logger.new(File.join(Rails.root,"log","sidekiq-job.log")).info("[#{self.class}] #{msg}")

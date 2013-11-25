@@ -99,7 +99,7 @@ class MembersController < ApplicationController
 	# post
 	def upload_avatar
 		file = params[:image].tempfile.path
-		type = params[:image].content_type
+		type = params[:image].content_type || params[:image].type
 		if current_member.validate_upload_avatar(file,type)
 			current_member.save_avatar(file)
 			@avatar = current_member.avatar + "?#{Time.now.to_i}"

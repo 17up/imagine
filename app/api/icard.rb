@@ -54,6 +54,21 @@ class Icard < Grape::API
 
 		end
 
+		# @params uuid
+		desc "avatar upload"
+		post :avatar do
+			current_member = current_device.member
+			file = params[:image].tempfile.path
+			type = params[:image].content_type || params[:image].type
+			if current_member.validate_upload_avatar(file,type)
+				current_member.save_avatar(file)
+				@avatar = current_member.avatar + "?#{Time.now.to_i}"
+				render_json 0,"ok",@avatar
+			else
+				render_json -1,"error"
+			end
+		end
+
 		# 联想相关词汇卡片
 		desc "imagine u_word by specify word limit 4"
 		get :imagine do
@@ -80,6 +95,10 @@ class Icard < Grape::API
 			type = params[:image].content_type || params[:image].type
 			if @uw&&@uw.validate_upload_image(file,type)
 				if params[:async]
+					file = Tempfile.new(@uw.id.to_s).path
+					File.open(file, 'wb') do |f|
+						f.write params[:image].read
+					end
 					HardWorker::ProcessImageJob.perform_async(@uw._id.to_s,file)
 				else
 					@uw = @uw.make_image(file)
