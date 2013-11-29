@@ -50,8 +50,10 @@ class Icard < Grape::API
 		# 从数据库搜索 title，如无则从web上搜
 		desc "search one word from web"
 		get :search do
-
-
+			word = Onion::Word.new(params[:title].strip).insert(skip_exist: 1)
+			q = Quote.lt(100).content_by(word.title).limit(2).map{|x| x.content}
+			data = word.as_json.merge!(quotes: q)
+			render_json 0,"ok",data
 		end
 
 		# 联想相关词汇卡片
